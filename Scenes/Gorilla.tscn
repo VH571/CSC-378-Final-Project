@@ -1,0 +1,96 @@
+[gd_scene load_steps=13 format=3 uid="uid://b8331g167mby1"]
+
+[ext_resource type="Script" uid="uid://m5d0l54stjhs" path="res://Scripts/gorilla.gd" id="1_j22t5"]
+[ext_resource type="Texture2D" uid="uid://by7bjlwjkh2cv" path="res://Animations/gorilla.png" id="2_pyfvg"]
+[ext_resource type="Texture2D" uid="uid://c8hlkjoo7ilb5" path="res://Animations/gorilla-idle.png" id="3_4vwk3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wq7k8"]
+atlas = ExtResource("2_pyfvg")
+region = Rect2(0, 0, 30, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fc8fu"]
+atlas = ExtResource("2_pyfvg")
+region = Rect2(30, 0, 30, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8x5dh"]
+atlas = ExtResource("2_pyfvg")
+region = Rect2(60, 0, 30, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xnm47"]
+atlas = ExtResource("2_pyfvg")
+region = Rect2(90, 0, 30, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8esxm"]
+atlas = ExtResource("3_4vwk3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anlhu"]
+atlas = ExtResource("3_4vwk3")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8c2vd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wq7k8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fc8fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8x5dh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xnm47")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8esxm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anlhu")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s58yn"]
+size = Vector2(29, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u1yx4"]
+size = Vector2(42, 29.5)
+
+[node name="GorillaNode" type="Node2D"]
+
+[node name="Gorilla" type="CharacterBody2D" parent="."]
+script = ExtResource("1_j22t5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Gorilla"]
+position = Vector2(128.5, 111)
+scale = Vector2(1.03125, 1)
+sprite_frames = SubResource("SpriteFrames_8c2vd")
+animation = &"attack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gorilla"]
+position = Vector2(126.5, 109.5)
+shape = SubResource("RectangleShape2D_s58yn")
+one_way_collision_margin = 3.0
+
+[node name="Area2D" type="Area2D" parent="Gorilla"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gorilla/Area2D"]
+position = Vector2(127, 108.75)
+shape = SubResource("RectangleShape2D_u1yx4")
+
+[connection signal="body_entered" from="Gorilla/Area2D" to="Gorilla" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="Gorilla/Area2D" to="Gorilla" method="_on_area_2d_body_entered"]

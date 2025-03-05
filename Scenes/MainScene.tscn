@@ -1,0 +1,82 @@
+[gd_scene load_steps=12 format=3 uid="uid://c1nhvl1hwy6nu"]
+
+[ext_resource type="Script" uid="uid://bpuxbcav5baf3" path="res://Scripts/kangaroo.gd" id="1_nhkr4"]
+[ext_resource type="Texture2D" uid="uid://bjgf041x7en2g" path="res://Animations/kangaroo attack.png" id="2_7rqgy"]
+[ext_resource type="Texture2D" uid="uid://dsaaqujrvyne6" path="res://Animations/Kangaroo Idle.png" id="3_qxria"]
+[ext_resource type="PackedScene" uid="uid://b8331g167mby1" path="res://Scenes/Gorilla.tscn" id="4_7rqgy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udoh7"]
+atlas = ExtResource("2_7rqgy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_poa5m"]
+atlas = ExtResource("2_7rqgy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvp0j"]
+atlas = ExtResource("2_7rqgy")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxc41"]
+atlas = ExtResource("3_qxria")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3blc"]
+atlas = ExtResource("3_qxria")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_80x8b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udoh7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_poa5m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvp0j")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 9.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxc41")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3blc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_21i2k"]
+radius = 17.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Kangaroo" type="CharacterBody2D" parent="." groups=["player"]]
+position = Vector2(4.43074, 4.94751)
+script = ExtResource("1_nhkr4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Kangaroo"]
+position = Vector2(206.569, 181.052)
+sprite_frames = SubResource("SpriteFrames_80x8b")
+animation = &"attack"
+frame = 2
+frame_progress = 0.886959
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Kangaroo"]
+position = Vector2(204.936, 181.798)
+shape = SubResource("CircleShape2D_21i2k")
+
+[node name="Gorilla" parent="." instance=ExtResource("4_7rqgy")]
+position = Vector2(0, -39)
