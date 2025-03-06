@@ -13,6 +13,7 @@ config_version=5
 config/name="Blood of the Wild"
 run/main_scene="uid://c1nhvl1hwy6nu"
 config/features=PackedStringArray("4.4", "Forward Plus")
+config/icon="res://icon.svg"
 
 [input]
 

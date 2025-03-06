@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d2s1tnupw50e"
-path="res://.godot/imported/falling_to_defeated_frame_2(1).png-1b3879739e9cf823811e8a67e33d129d.ctex"
+path="res://.godot/imported/defeated_horse.png-86c1c0237745dc19e07dc48c7fead414.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Animations/falling_to_defeated_frame_2(1).png"
-dest_files=["res://.godot/imported/falling_to_defeated_frame_2(1).png-1b3879739e9cf823811e8a67e33d129d.ctex"]
+source_file="res://Animations/defeated_horse.png"
+dest_files=["res://.godot/imported/defeated_horse.png-86c1c0237745dc19e07dc48c7fead414.ctex"]
 
 [params]
 
