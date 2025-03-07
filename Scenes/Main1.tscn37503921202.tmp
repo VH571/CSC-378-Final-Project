@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://oxhkrjhmjg6h"]
+
+[ext_resource type="PackedScene" uid="uid://bgb1qjhfdk2qr" path="res://Scenes/world1.tscn" id="1_dsgse"]
+[ext_resource type="Script" uid="uid://l5vwvf4foksu" path="res://Scripts/horse_room.gd" id="1_rs1el"]
+[ext_resource type="PackedScene" uid="uid://b8ugmxfy2ri4x" path="res://Scenes/player.tscn" id="2_xh47o"]
+[ext_resource type="Script" uid="uid://lsxw2sj4jh6s" path="res://Scripts/UI.gd" id="5_mu6v4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mu6v4"]
+
+[node name="Main" type="Node2D"]
+position = Vector2(3, -22)
+script = ExtResource("1_rs1el")
+
+[node name="TileMap" parent="." instance=ExtResource("1_dsgse")]
+
+[node name="Player" parent="." instance=ExtResource("2_xh47o")]
+position = Vector2(286, 581)
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+position = Vector2(205, 352)
+
+[node name="SpawnPoint1" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(-85, -217)
+
+[node name="SpawnPoint2" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(265, -220)
+
+[node name="SpawnPoint3" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(-81, 214)
+
+[node name="SpawnPoint4" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(277, 214)
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("5_mu6v4")
+
+[node name="LevelLabel" type="Label" parent="UI"]
+offset_left = 274.0
+offset_top = 716.0
+offset_right = 314.0
+offset_bottom = 739.0
+label_settings = SubResource("LabelSettings_mu6v4")
+
+[node name="MessageTimer" type="Timer" parent="UI"]
+
+[node name="LevelTimer" type="Timer" parent="."]

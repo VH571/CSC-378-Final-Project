@@ -70,9 +70,7 @@ script = ExtResource("1_nhkr4")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Kangaroo"]
 position = Vector2(206.569, 181.052)
 sprite_frames = SubResource("SpriteFrames_80x8b")
-animation = &"attack"
-frame = 2
-frame_progress = 0.886959
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Kangaroo"]
 position = Vector2(204.936, 181.798)
