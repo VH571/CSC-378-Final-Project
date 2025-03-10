@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c1nhvl1hwy6nu"]
+[gd_scene load_steps=8 format=3 uid="uid://c1nhvl1hwy6nu"]
 
+[ext_resource type="Script" uid="uid://grak4ibl5dyv" path="res://Scenes/main_scene.gd" id="1_7rqgy"]
 [ext_resource type="Texture2D" uid="uid://cn8t21dy7tqu" path="res://assets/tileset.png" id="1_qxria"]
+[ext_resource type="PackedScene" uid="uid://dfs32rx8thb7t" path="res://Scenes/gorilla2.tscn" id="3_7rqgy"]
 [ext_resource type="PackedScene" uid="uid://b8ugmxfy2ri4x" path="res://Scenes/player.tscn" id="3_nhkr4"]
-[ext_resource type="PackedScene" uid="uid://b8331g167mby1" path="res://Scenes/Gorilla.tscn" id="4_7rqgy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y4jh7"]
 texture = ExtResource("1_qxria")
@@ -115,6 +116,7 @@ size = Vector2(63.5, 21)
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(6, 33)
+script = ExtResource("1_7rqgy")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(25, -5)
@@ -132,10 +134,9 @@ position = Vector2(320.25, 661.5)
 shape = SubResource("RectangleShape2D_qxria")
 
 [node name="Player" parent="." instance=ExtResource("3_nhkr4")]
-position = Vector2(243, 217)
+position = Vector2(199, 195)
 
-[node name="GorillaNode" parent="." instance=ExtResource("4_7rqgy")]
-position = Vector2(219, 249)
-scale = Vector2(1.00176, 0.997337)
+[node name="gorilla2" parent="." instance=ExtResource("3_7rqgy")]
+position = Vector2(393, 346)
 
 [connection signal="body_entered" from="TileMap/To_Horse_Scene" to="Player" method="_on_to_horse_scene_body_entered"]

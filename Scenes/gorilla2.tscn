@@ -1,0 +1,94 @@
+[gd_scene load_steps=13 format=3 uid="uid://dfs32rx8thb7t"]
+
+[ext_resource type="Texture2D" uid="uid://by7bjlwjkh2cv" path="res://Animations/gorilla.png" id="1_4luuu"]
+[ext_resource type="Script" uid="uid://dvv25jcinx10d" path="res://Scripts/gorilla_2.gd" id="1_hqkt6"]
+[ext_resource type="Texture2D" uid="uid://c8hlkjoo7ilb5" path="res://Animations/gorilla-idle.png" id="2_hqkt6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ltq6k"]
+size = Vector2(28, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wngsd"]
+atlas = ExtResource("1_4luuu")
+region = Rect2(0, 0, 30, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3nci"]
+atlas = ExtResource("1_4luuu")
+region = Rect2(30, 0, 30, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4wx5"]
+atlas = ExtResource("1_4luuu")
+region = Rect2(60, 0, 30, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8ulc"]
+atlas = ExtResource("1_4luuu")
+region = Rect2(90, 0, 30, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eofi0"]
+atlas = ExtResource("2_hqkt6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2txdn"]
+atlas = ExtResource("2_hqkt6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uhtr3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wngsd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3nci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4wx5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8ulc")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eofi0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2txdn")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eofi0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2txdn")
+}],
+"loop": true,
+"name": &"run",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aweu8"]
+size = Vector2(51, 30)
+
+[node name="gorilla2" type="CharacterBody2D"]
+script = ExtResource("1_hqkt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -1)
+shape = SubResource("RectangleShape2D_ltq6k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_uhtr3")
+animation = &"attack"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-2.5, -1)
+shape = SubResource("RectangleShape2D_aweu8")
