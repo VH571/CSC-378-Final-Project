@@ -72,7 +72,7 @@ size = Vector2(42, 29.5)
 
 [node name="GorillaNode" type="Node2D"]
 
-[node name="Gorilla" type="CharacterBody2D" parent="."]
+[node name="Gorilla" type="CharacterBody2D" parent="." groups=["enemies"]]
 script = ExtResource("1_j22t5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Gorilla"]

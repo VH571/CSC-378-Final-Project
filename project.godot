@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="Blood of the Wild"
-run/main_scene="uid://oxhkrjhmjg6h"
+run/main_scene="uid://c1nhvl1hwy6nu"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=600
-window/size/viewport_height=645
+window/size/viewport_width=700
+window/size/viewport_height=700
 
 [global_group]
 
