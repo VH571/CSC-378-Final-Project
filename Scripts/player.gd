@@ -98,3 +98,15 @@ func get_health():
 	return health
 func get_max_health():
 	return 100
+
+
+func _on_to_horse_scene_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		print("Player reached exit! Changing scene...")
+		get_tree().change_scene_to_file("res://Scenes/Main1.tscn")
+
+
+func _on_to_main_scene_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		print("Player reached exit! Changing scene...")
+		get_tree().change_scene_to_file("res://Scenes/MainScene.tscn")
