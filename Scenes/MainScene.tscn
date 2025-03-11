@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://c1nhvl1hwy6nu"]
 
-[ext_resource type="Script" uid="uid://grak4ibl5dyv" path="res://Scripts/main_scene.gd" id="1_7rqgy"]
+[ext_resource type="Script" path="res://Scripts/main_scene.gd" id="1_7rqgy"]
 [ext_resource type="Texture2D" uid="uid://cn8t21dy7tqu" path="res://assets/tileset.png" id="1_qxria"]
 [ext_resource type="PackedScene" uid="uid://dfs32rx8thb7t" path="res://Scenes/gorilla2.tscn" id="3_7rqgy"]
 [ext_resource type="PackedScene" uid="uid://b8ugmxfy2ri4x" path="res://Scenes/player.tscn" id="3_nhkr4"]
