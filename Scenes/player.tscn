@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://b8ugmxfy2ri4x"]
 
-[ext_resource type="Script" uid="uid://4e7s2yixqg4c" path="res://Scripts/player.gd" id="1_v0iea"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="Texture2D" uid="uid://dvhm2adf844t3" path="res://Animations/kangaroo attack1.png" id="2_fkybt"]
 [ext_resource type="Texture2D" uid="uid://bjgf041x7en2g" path="res://Animations/kangaroo attack.png" id="3_x3wgy"]
 [ext_resource type="Texture2D" uid="uid://b8rwwrge5m1hh" path="res://Animations/Kangaroo Idle1.png" id="4_3smsa"]
