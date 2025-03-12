@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://b8ugmxfy2ri4x"]
+[gd_scene load_steps=21 format=3 uid="uid://b8ugmxfy2ri4x"]
 
-[ext_resource type="Script" path="res://Scripts/player.gd" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://4e7s2yixqg4c" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="Texture2D" uid="uid://dvhm2adf844t3" path="res://Animations/kangaroo attack1.png" id="2_fkybt"]
 [ext_resource type="Texture2D" uid="uid://bjgf041x7en2g" path="res://Animations/kangaroo attack.png" id="3_x3wgy"]
 [ext_resource type="Texture2D" uid="uid://b8rwwrge5m1hh" path="res://Animations/Kangaroo Idle1.png" id="4_3smsa"]
 [ext_resource type="Texture2D" uid="uid://dsaaqujrvyne6" path="res://Animations/Kangaroo Idle.png" id="5_8erm5"]
+[ext_resource type="PackedScene" uid="uid://b5a5nuik68062" path="res://Scenes/healthbar.tscn" id="6_x3wgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1ek2"]
 atlas = ExtResource("2_fkybt")
@@ -127,7 +128,11 @@ size = Vector2(23.0808, 24.6338)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fkybt"]
 size = Vector2(65, 31)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x3wgy"]
+bg_color = Color(0.160881, 0.722587, 0, 1)
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+scale = Vector2(1.62404, 1.52)
 script = ExtResource("1_v0iea")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -146,3 +151,10 @@ shape = SubResource("RectangleShape2D_x3wgy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PunchArea2D"]
 position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_fkybt")
+
+[node name="HealthBar" parent="." instance=ExtResource("6_x3wgy")]
+offset_left = -13.5465
+offset_top = -20.3947
+offset_right = 168.454
+offset_bottom = -16.3947
+theme_override_styles/fill = SubResource("StyleBoxFlat_x3wgy")

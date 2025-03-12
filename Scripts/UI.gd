@@ -27,6 +27,7 @@ func update_health_display():
 		var current_health = player.get_health()
 		var max_health = player.get_max_health() if player.has_method("get_max_health") else 100
 		
+		
 		if health_bar:
 			health_bar.max_value = max_health
 			health_bar.value = current_health

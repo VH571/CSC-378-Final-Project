@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://dfs32rx8thb7t"]
+[gd_scene load_steps=14 format=3 uid="uid://dfs32rx8thb7t"]
 
 [ext_resource type="Texture2D" uid="uid://by7bjlwjkh2cv" path="res://Animations/gorilla.png" id="1_4luuu"]
-[ext_resource type="Script" path="res://Scripts/gorilla_2.gd" id="1_hqkt6"]
+[ext_resource type="Script" uid="uid://dvv25jcinx10d" path="res://Scripts/gorilla_2.gd" id="1_hqkt6"]
 [ext_resource type="Texture2D" uid="uid://c8hlkjoo7ilb5" path="res://Animations/gorilla-idle.png" id="2_hqkt6"]
+[ext_resource type="PackedScene" uid="uid://b5a5nuik68062" path="res://Scenes/healthbar.tscn" id="4_ltq6k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ltq6k"]
 size = Vector2(28, 30)
@@ -77,7 +78,9 @@ animations = [{
 size = Vector2(51, 30)
 
 [node name="gorilla2" type="CharacterBody2D"]
+scale = Vector2(2.08214, 2.05993)
 script = ExtResource("1_hqkt6")
+attack_range = 80.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, -1)
@@ -85,10 +88,16 @@ shape = SubResource("RectangleShape2D_ltq6k")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_uhtr3")
-animation = &"attack"
+animation = &"run"
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-2.5, -1)
 shape = SubResource("RectangleShape2D_aweu8")
+
+[node name="HealthBar" parent="." instance=ExtResource("4_ltq6k")]
+offset_left = -19.6913
+offset_top = -21.8454
+offset_right = 220.309
+offset_bottom = -17.8454

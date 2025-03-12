@@ -9,13 +9,18 @@ var speed : int
 var screen_size : Vector2
 var is_attacking : bool = false
 var angle: int = 2
-var health : int = 100
+var health : int = 150
+var alive = true
 
 @onready var anim := $AnimatedSprite2D
 @onready var attack_hitbox := $PunchArea2D
 @onready var attack_timer := $AttackTimer
+@onready var healthbar = $HealthBar
+
 
 func _ready():
+	health = 150
+	healthbar.init_health(health)
 	screen_size = get_viewport_rect().size
 	reset()
 	anim.animation_finished.connect(_on_animation_finished)
@@ -71,11 +76,23 @@ func check_hit_enemies():
 
 func take_damage(amount):
 	health -= amount
-	print("Player health:", health)
+	print("Enemy health: ", health)
+	
+	healthbar.health = health
+	
+	if anim:
+		anim.modulate = Color(1, 0.3, 0.3)
+		await get_tree().create_timer(0.1).timeout
+		anim.modulate = Color(1, 1, 1)
+	
 	if health <= 0:
 		die()
 
 func die():
+	alive = false
+	$CollisionShape2D.set_deferred("disabled", true)
+	await get_tree().create_timer(1.5).timeout
+	queue_free()
 	print("Game Over!")
 
 func _on_animation_finished():
@@ -111,8 +128,13 @@ func _on_to_main_scene_body_entered(body: Node2D) -> void:
 		print("Player reached exit! Changing scene...")
 		get_tree().change_scene_to_file("res://Scenes/MainScene.tscn")
 		
-func _on_to_camel_scene_body_entered(body: Node2D) -> void:
+		
+func _on_to_desert_scene_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		print("Player reached exit! Changing scene...")
 		get_tree().change_scene_to_file("res://Scenes/Desert.tscn")
-		
+
+func _on_to_gorilla_scene_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		print("Player reached exit! Changing scene...")
+		get_tree().change_scene_to_file("res://Scenes/Gorilla_fight.tscn")

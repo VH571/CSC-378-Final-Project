@@ -12,7 +12,7 @@ const DROP_CHANCE : float = 0.1
 @export var max_voice_delay: float = 10
 @export var voice_line_chance: float = 0.7
 @export var num_one_liners: int = 6
-
+@onready var healthbar = $HealthBar
 var main
 var player
 
@@ -27,7 +27,10 @@ var attack_cooldown : float = 1.5
 var can_attack : bool = true
 var has_dealt_damage : bool = false
 
+
+
 func _ready():
+	healthbar.init_health(health)
 	find_player()
 	connect_signals()
 	set_initial_direction()
@@ -193,6 +196,8 @@ func deal_damage_to_player():
 func take_damage(amount):
 	health -= amount
 	print("Horse health after damage: ", health)
+	
+	healthbar.health = health
 	
 	if anim:
 		anim.modulate = Color(1, 0.3, 0.3)

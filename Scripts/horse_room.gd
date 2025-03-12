@@ -23,6 +23,7 @@ var level_in_progress: bool = false
 @onready var ui = $UI
 @onready var level_timer = $LevelTimer
 
+
 signal level_completed(level_number)
 signal all_levels_completed
 

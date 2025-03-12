@@ -2,8 +2,8 @@ extends CharacterBody2D
 signal hit_player
 
 # Enemy properties
-@export var speed: float = 80.0
-@export var health: int = 100
+@export var speed: float = 40.0
+@export var health: int = 200
 @export var damage: int = 10
 @export var attack_range: float = 30.0
 @export var attack_cooldown: float = 1.0
@@ -11,6 +11,15 @@ signal hit_player
 # Node references
 @onready var anim = $AnimatedSprite2D
 @onready var attack_area = $AttackArea
+@onready var audio_player = $AudioPlayer
+@onready var roar_timer = $RoarTimer
+@onready var healthbar = $HealthBar
+
+# Sound paths
+const DAMAGED_SOUND = "res://assets/audio/gorilla/Damaged.mp3"
+const VOICELINE_SOUND = "res://assets/audio/gorilla/RandomVoiceline.mp3"
+const ROAR1_SOUND = "res://assets/audio/gorilla/roar01.mp3" 
+const ROAR2_SOUND = "res://assets/audio/gorilla/roar2.mp3"
 
 # State variables
 var player = null
@@ -21,7 +30,8 @@ var has_dealt_damage = false
 var alive = true
 
 func _ready():
-	# Find the player
+	health = 200
+	healthbar.init_health(health)
 	find_player()
 	
 	# Connect signals
@@ -39,8 +49,67 @@ func _ready():
 	attack_timer.timeout.connect(_on_attack_timer_timeout)
 	add_child(attack_timer)
 	
+	# Set up audio player
+	setup_audio_system()
+	
+	# Play a roar at start
+	play_random_roar()
+	
 	# Add debug print
 	print("Gorilla initialized, finding player...")
+
+func setup_audio_system():
+	# Create audio player if it doesn't exist
+	if !has_node("AudioPlayer"):
+		var player = AudioStreamPlayer.new()
+		player.name = "AudioPlayer"
+		add_child(player)
+		audio_player = player
+	
+	# Setup roar timer
+	if !has_node("RoarTimer"):
+		var timer = Timer.new()
+		timer.name = "RoarTimer"
+		timer.one_shot = true
+		timer.wait_time = randf_range(5.0, 10.0)
+		timer.timeout.connect(_on_roar_timer_timeout)
+		add_child(timer)
+		roar_timer = timer
+		roar_timer.start()
+
+func _on_roar_timer_timeout():
+	# Random chance to play a roar
+	if alive and randf() <= 0.7:
+		play_random_roar()
+	
+	# Restart timer with random delay
+	roar_timer.wait_time = randf_range(5.0, 10.0)
+	roar_timer.start()
+
+func play_random_roar():
+	if !alive:
+		return
+	
+	# Pick random roar sound
+	var sound_path = ROAR1_SOUND if randf() < 0.5 else ROAR2_SOUND
+	play_sound(sound_path)
+
+func play_random_voiceline():
+	if !alive:
+		return
+	
+	play_sound(VOICELINE_SOUND)
+
+func play_sound(sound_path):
+	if !audio_player:
+		return
+	
+	var stream = load(sound_path)
+	if stream:
+		audio_player.stream = stream
+		audio_player.play()
+	else:
+		print("Failed to load sound: ", sound_path)
 
 func _physics_process(delta):
 	if !alive or !player:
@@ -95,8 +164,12 @@ func start_attack():
 	can_attack = false
 	has_dealt_damage = false
 	
+	# Play random roar when attacking
+	if randf() < 0.5:
+		play_random_roar()
+	
 	if anim:
-		anim.animation = "attack"  # Assuming you have an attack animation
+		anim.animation = "attack" 
 		anim.play()
 
 func deal_damage_to_player():
@@ -105,10 +178,19 @@ func deal_damage_to_player():
 		hit_player.emit()
 		has_dealt_damage = true
 		print("Enemy dealt damage to player")
+		
+		
+		if randf() < 0.7:
+			play_random_voiceline()
 
 func take_damage(amount):
 	health -= amount
 	print("Enemy health: ", health)
+	
+	healthbar.health = health
+	
+	# Play damage sound
+	play_sound(DAMAGED_SOUND)
 	
 	# Visual feedback of damage
 	if anim:
@@ -121,6 +203,9 @@ func take_damage(amount):
 
 func die():
 	alive = false
+	
+	# Play final roar
+	play_random_roar()
 	
 	# Remove from enemies group
 	remove_from_group("enemies")
