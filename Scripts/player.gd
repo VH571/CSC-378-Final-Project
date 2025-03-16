@@ -19,7 +19,6 @@ var alive = true
 
 
 func _ready():
-	health = 150
 	healthbar.init_health(health)
 	screen_size = get_viewport_rect().size
 	reset()
@@ -34,7 +33,7 @@ func _physics_process(_delta):
 	update_animation()
 
 func reset():
-	position = screen_size / 2
+	screen_size = get_viewport_rect().size
 	speed = START_SPEED
 
 func get_input():

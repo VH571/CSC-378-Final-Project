@@ -123,7 +123,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x3wgy"]
-size = Vector2(23.0808, 24.6338)
+size = Vector2(12.6892, 22.4641)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fkybt"]
 size = Vector2(65, 31)
@@ -140,7 +140,7 @@ sprite_frames = SubResource("SpriteFrames_fkybt")
 animation = &"attack2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 0.150163)
+position = Vector2(1.53937, 0.657895)
 scale = Vector2(1.21313, 1.23003)
 shape = SubResource("RectangleShape2D_x3wgy")
 

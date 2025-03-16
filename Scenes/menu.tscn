@@ -7,7 +7,8 @@
 [node name="Menu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
+offset_left = 3.0
+offset_right = 43.0
 offset_bottom = 40.0
 scale = Vector2(1.59544, 1.42221)
 script = ExtResource("1_cayip")
@@ -34,13 +35,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.1701
-offset_top = 14.9675
-offset_right = 32.8299
-offset_bottom = 80.9675
+offset_left = -21.9456
+offset_top = 38.7678
+offset_right = 31.0544
+offset_bottom = 104.768
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.765875, 0.465778)
+scale = Vector2(1.01368, 0.656014)
 
 [node name="Start" type="Button" parent="TextureRect/VBoxContainer"]
 layout_mode = 2

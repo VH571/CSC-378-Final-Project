@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://37xfattn1ct0"]
+[gd_scene load_steps=5 format=3 uid="uid://37xfattn1ct0"]
 
 [ext_resource type="Texture2D" uid="uid://c4ligwnkwt0hf" path="res://Animations/Wooden_Sign.png" id="1_fmf1u"]
 [ext_resource type="Script" uid="uid://pr0s1erw45o7" path="res://Scripts/Sign.gd" id="1_m6mpx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m6mpx"]
 size = Vector2(72, 67)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqvqy"]
+size = Vector2(20.0321, 56.3101)
 
 [node name="Sign" type="StaticBody2D"]
 scale = Vector2(0.498398, 0.532764)
@@ -29,6 +32,11 @@ offset_right = 35.0
 offset_bottom = -26.0
 text = "Press E"
 metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.0160713, -1.877)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_hqvqy")
 
 [connection signal="body_entered" from="interaction_area" to="." method="_on_interaction_area_body_entered"]
 [connection signal="body_exited" from="interaction_area" to="." method="_on_interaction_area_body_exited"]

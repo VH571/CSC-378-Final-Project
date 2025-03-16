@@ -307,7 +307,7 @@ position = Vector2(529, 161)
 scale = Vector2(2.09296, 2.05993)
 
 [node name="Player" parent="." instance=ExtResource("5_gm5vl")]
-position = Vector2(417, 635)
+position = Vector2(417, 643)
 
 [node name="to_main_scene" type="Area2D" parent="."]
 
@@ -315,5 +315,5 @@ position = Vector2(417, 635)
 position = Vector2(416, 692)
 shape = SubResource("RectangleShape2D_gm5vl")
 
-[connection signal="body_entered" from="to_main_scene" to="Player" method="_on_to_main_scene_body_entered"]
 [connection signal="body_entered" from="to_main_scene" to="Player" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="to_main_scene" to="Player" method="_on_to_main_scene_body_entered"]
