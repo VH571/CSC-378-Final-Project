@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://du11igeby5bn2"]
 
-[ext_resource type="Script" uid="uid://bvpd5aeupwpru" path="res://Scripts/HorseBoss.gd" id="1_2j41i"]
+[ext_resource type="Script" path="res://Scripts/HorseBoss.gd" id="1_2j41i"]
 [ext_resource type="Texture2D" uid="uid://hyjap3r41la3" path="res://Animations/punch.png" id="1_61thg"]
 [ext_resource type="Texture2D" uid="uid://d2s1tnupw50e" path="res://Animations/defeated_horse.png" id="2_2j41i"]
 [ext_resource type="Texture2D" uid="uid://272e38v6ip62" path="res://Animations/idle.png" id="3_foxm7"]
