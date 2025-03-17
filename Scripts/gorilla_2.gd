@@ -2,7 +2,6 @@ extends CharacterBody2D
 signal hit_player
 
 # Enemy properties
-
 @export var speed: float = 40.0
 @export var health: int = 270
 @export var damage: int = 10
@@ -30,8 +29,8 @@ var can_attack = true
 var has_dealt_damage = false
 var alive = true
 @export var boss_name: String = "GorillaBoss"
+
 func _ready():
-	
 	if BossProgressManager.is_single_boss_defeated(boss_name):
 		set_physics_process(false)
 		if $CollisionShape2D:
@@ -44,6 +43,12 @@ func _ready():
 	find_player()
 	
 	print("Player found: ", player != null)
+	
+	# Connect to player's died signal if player exists
+	if player and player.has_signal("died"):
+		if not player.is_connected("died", Callable(self, "player_died")):
+			player.died.connect(player_died)
+			print("Connected to player's died signal")
 	
 	if anim:
 		anim.animation_finished.connect(_on_animation_finished)
@@ -61,7 +66,30 @@ func _ready():
 	
 	setup_audio_system()
 	play_random_roar()
+
+# NEW FUNCTION: Handle player death
+func player_died():
+	print("Gorilla received player died signal")
 	
+	# Stop movement and attacks
+	velocity = Vector2.ZERO
+	is_attacking = false
+	
+	# Turn off physics processing
+	set_physics_process(false)
+	
+	# Change animation to idle
+	if anim:
+		anim.animation = "idle"
+		anim.play()
+	
+	# Stop timers
+	if has_node("AttackTimer"):
+		$AttackTimer.stop()
+	
+	if roar_timer:
+		roar_timer.stop()
+
 func setup_audio_system():
 	# Create audio player if it doesn't exist
 	if !has_node("AudioPlayer"):
@@ -118,6 +146,11 @@ func play_sound(sound_path):
 func _physics_process(delta):
 	if !alive or !player:
 		return
+		
+	# Check if player is still valid and alive
+	if !is_instance_valid(player) or (player.has_method("get_health") and player.get_health() <= 0):
+		player_died()
+		return
 	
 	# Update direction to player
 	direction = (player.global_position - global_position).normalized()
@@ -145,6 +178,12 @@ func find_player():
 		player = get_tree().get_first_node_in_group("player")
 	else:
 		print("Player found at position:", player.global_position)
+		
+		# Connect to player's died signal
+		if player.has_signal("died"):
+			if not player.is_connected("died", Callable(self, "player_died")):
+				player.died.connect(player_died)
+				print("Connected to player's died signal")
 
 func update_animation():
 	if !anim:
@@ -173,12 +212,15 @@ func start_attack():
 		anim.play()
 
 func deal_damage_to_player():
-	if player and player.has_method("take_damage") and !has_dealt_damage:
+	if player and is_instance_valid(player) and player.has_method("take_damage") and !has_dealt_damage:
+		# Check if player is still alive before dealing damage
+		if player.has_method("get_health") and player.get_health() <= 0:
+			return
+			
 		player.take_damage(damage)
 		hit_player.emit()
 		has_dealt_damage = true
 		print("Enemy dealt damage to player")
-		
 		
 		if randf() < 0.7:
 			play_random_voiceline()
@@ -229,7 +271,7 @@ func _on_animation_finished():
 	if is_attacking and anim.animation == "attack":
 		print("Attack animation finished")
 		# Check if player is in range to deal damage
-		if global_position.distance_to(player.global_position) < attack_range + 10:
+		if player and is_instance_valid(player) and global_position.distance_to(player.global_position) < attack_range + 10:
 			deal_damage_to_player()
 		
 		is_attacking = false
@@ -242,5 +284,5 @@ func _on_attack_timer_timeout():
 	print("Attack cooldown finished, can attack again")
 	
 	# If player is still in range, attack again immediately
-	if player and global_position.distance_to(player.global_position) < attack_range:
+	if player and is_instance_valid(player) and global_position.distance_to(player.global_position) < attack_range:
 		call_deferred("start_attack")

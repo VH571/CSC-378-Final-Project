@@ -123,7 +123,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x3wgy"]
-size = Vector2(12.6892, 22.4641)
+size = Vector2(10.6589, 16.0458)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fkybt"]
 size = Vector2(34.4819, 31)
@@ -140,7 +140,7 @@ sprite_frames = SubResource("SpriteFrames_fkybt")
 animation = &"attack2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.53937, 0.657895)
+position = Vector2(0.307888, 2.63158)
 scale = Vector2(1.21313, 1.23003)
 shape = SubResource("RectangleShape2D_x3wgy")
 
@@ -150,7 +150,6 @@ shape = SubResource("RectangleShape2D_x3wgy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PunchArea2D"]
 position = Vector2(0, 0.5)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_fkybt")
 
 [node name="HealthBar" parent="." instance=ExtResource("6_x3wgy")]
