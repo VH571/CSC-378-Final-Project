@@ -31,20 +31,14 @@ var has_dealt_damage = false
 var alive = true
 @export var boss_name: String = "GorillaBoss"
 func _ready():
-	print("Gorilla _ready() called")
-	print("Boss name: ", boss_name)
-	print("Boss defeated: ", BossProgressManager.is_single_boss_defeated(boss_name))
 	
 	if BossProgressManager.is_single_boss_defeated(boss_name):
-		print("Boss is marked as defeated")
 		set_physics_process(false)
 		if $CollisionShape2D:
 			$CollisionShape2D.set_deferred("disabled", true)
 		if anim:
 			anim.visible = false
 		return
-	
-	print("Boss not defeated, continuing initialization")
 	
 	healthbar.init_health(health)
 	find_player()
@@ -68,7 +62,6 @@ func _ready():
 	setup_audio_system()
 	play_random_roar()
 	
-	print("Gorilla initialization complete")
 func setup_audio_system():
 	# Create audio player if it doesn't exist
 	if !has_node("AudioPlayer"):
@@ -142,10 +135,6 @@ func _physics_process(delta):
 		if global_position.distance_to(player.global_position) < attack_range and can_attack:
 			start_attack()
 	
-	# Add debug prints occasionally
-	if Engine.get_frames_drawn() % 60 == 0:  # Every ~1 second
-		print("Gorilla state: attacking=", is_attacking, " dist=", global_position.distance_to(player.global_position))
-
 func find_player():
 	player = get_tree().get_first_node_in_group("player")
 	
