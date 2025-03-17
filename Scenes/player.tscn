@@ -126,7 +126,7 @@ animations = [{
 size = Vector2(12.6892, 22.4641)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fkybt"]
-size = Vector2(65, 31)
+size = Vector2(34.4819, 31)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x3wgy"]
 bg_color = Color(0.160881, 0.722587, 0, 1)
@@ -149,7 +149,8 @@ shape = SubResource("RectangleShape2D_x3wgy")
 [node name="PunchArea2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PunchArea2D"]
-position = Vector2(0.5, 0.5)
+position = Vector2(0, 0.5)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_fkybt")
 
 [node name="HealthBar" parent="." instance=ExtResource("6_x3wgy")]
