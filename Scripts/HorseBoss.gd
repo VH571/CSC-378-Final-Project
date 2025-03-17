@@ -8,7 +8,7 @@ signal hit_player
 const DROP_CHANCE : float = 0.1
 
 @onready var anim = $AnimatedSprite2D
-@onready var desert_scene := preload("res://Scenes/Desert.tscn")
+@onready var horse_scene := preload("res://Scenes/Horse.tscn")
 @onready var audio_player = $AudioPlayer
 @onready var voice_timer = $VoiceTimer
 @export var min_voice_delay: float = 5.0
@@ -213,7 +213,7 @@ func deal_damage_to_player():
 
 func take_damage(amount):
 	health -= amount
-	print("Camel health after damage: ", health)
+	print("Horse health after damage: ", health)
 	
 	healthbar.health = health
 	

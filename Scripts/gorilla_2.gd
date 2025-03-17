@@ -194,7 +194,6 @@ func deal_damage_to_player():
 		if randf() < 0.7:
 			play_random_voiceline()
 
-
 func take_damage(amount):
 	health -= amount
 	print("Enemy health: ", health)
