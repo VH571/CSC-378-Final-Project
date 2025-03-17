@@ -48,21 +48,13 @@ position = Vector2(277, 214)
 script = ExtResource("5_mu6v4")
 
 [node name="LevelLabel" type="Label" parent="UI"]
-offset_left = 274.0
-offset_top = 716.0
-offset_right = 314.0
-offset_bottom = 739.0
+offset_left = 156.0
+offset_top = 4.0
+offset_right = 196.0
+offset_bottom = 27.0
 label_settings = SubResource("LabelSettings_mu6v4")
 
 [node name="MessageTimer" type="Timer" parent="UI"]
-
-[node name="HealthLabel" type="Label" parent="UI"]
-offset_left = 153.0
-offset_top = 1.0
-offset_right = 193.0
-offset_bottom = 24.0
-scale = Vector2(1.16, 1.08)
-metadata/_edit_use_anchors_ = true
 
 [node name="LevelTimer" type="Timer" parent="."]
 

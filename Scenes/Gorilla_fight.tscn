@@ -307,7 +307,7 @@ position = Vector2(529, 161)
 scale = Vector2(2.09296, 2.05993)
 
 [node name="Player" parent="." instance=ExtResource("5_gm5vl")]
-position = Vector2(417, 635)
+position = Vector2(417, 643)
 
 [node name="to_main_scene" type="Area2D" parent="."]
 

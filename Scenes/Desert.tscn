@@ -765,6 +765,7 @@ max_value = 300.0
 value = 200.0
 
 [node name="Player" parent="." instance=ExtResource("4_18ojf")]
+
 position = Vector2(397, 331)
 
 [node name="ReturnToMainScene" type="Area2D" parent="."]
@@ -782,3 +783,6 @@ position = Vector2(19, 43.5)
 shape = SubResource("RectangleShape2D_iie5p")
 
 [connection signal="body_entered" from="ReturnToMainScene" to="Player" method="_on_return_to_main_scene_body_entered"]
+
+position = Vector2(682, 365)
+

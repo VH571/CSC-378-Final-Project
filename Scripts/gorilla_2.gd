@@ -2,8 +2,9 @@ extends CharacterBody2D
 signal hit_player
 
 # Enemy properties
+
 @export var speed: float = 40.0
-@export var health: int = 200
+@export var health: int = 270
 @export var damage: int = 10
 @export var attack_range: float = 30.0
 @export var attack_cooldown: float = 1.0
@@ -28,36 +29,46 @@ var is_attacking = false
 var can_attack = true
 var has_dealt_damage = false
 var alive = true
-
+@export var boss_name: String = "GorillaBoss"
 func _ready():
-	health = 200
+	print("Gorilla _ready() called")
+	print("Boss name: ", boss_name)
+	print("Boss defeated: ", BossProgressManager.is_single_boss_defeated(boss_name))
+	
+	if BossProgressManager.is_single_boss_defeated(boss_name):
+		print("Boss is marked as defeated")
+		set_physics_process(false)
+		if $CollisionShape2D:
+			$CollisionShape2D.set_deferred("disabled", true)
+		if anim:
+			anim.visible = false
+		return
+	
+	print("Boss not defeated, continuing initialization")
+	
 	healthbar.init_health(health)
 	find_player()
 	
-	# Connect signals
+	print("Player found: ", player != null)
+	
 	if anim:
 		anim.animation_finished.connect(_on_animation_finished)
 	
-	# Add to enemies group for level management
 	add_to_group("enemies")
 	
-	# Set up attack timer
-	var attack_timer = Timer.new()
-	attack_timer.name = "AttackTimer"
-	attack_timer.one_shot = true
-	attack_timer.wait_time = attack_cooldown
-	attack_timer.timeout.connect(_on_attack_timer_timeout)
-	add_child(attack_timer)
+	# Ensure attack timer is set up
+	if !has_node("AttackTimer"):
+		var attack_timer = Timer.new()
+		attack_timer.name = "AttackTimer"
+		attack_timer.one_shot = true
+		attack_timer.wait_time = attack_cooldown
+		attack_timer.timeout.connect(_on_attack_timer_timeout)
+		add_child(attack_timer)
 	
-	# Set up audio player
 	setup_audio_system()
-	
-	# Play a roar at start
 	play_random_roar()
 	
-	# Add debug print
-	print("Gorilla initialized, finding player...")
-
+	print("Gorilla initialization complete")
 func setup_audio_system():
 	# Create audio player if it doesn't exist
 	if !has_node("AudioPlayer"):
@@ -203,9 +214,8 @@ func take_damage(amount):
 		die()
 
 func die():
+	BossProgressManager.defeat_single_boss(boss_name)
 	alive = false
-	
-	# Play final roar
 	play_random_roar()
 	
 	# Remove from enemies group
