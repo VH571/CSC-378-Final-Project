@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbe6sdxxutvoy"
-path="res://.godot/imported/CamelBoss.png-86bac805791e4670af4f7c12815965e1.ctex"
+uid="uid://c4p8fbp0gsd43"
+path="res://.godot/imported/CamelRun.png-947351deaf9124cc19db89b71225e91a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Animations/CamelBoss.png"
-dest_files=["res://.godot/imported/CamelBoss.png-86bac805791e4670af4f7c12815965e1.ctex"]
+source_file="res://Animations/CamelRun.png"
+dest_files=["res://.godot/imported/CamelRun.png-947351deaf9124cc19db89b71225e91a.ctex"]
 
 [params]
 
