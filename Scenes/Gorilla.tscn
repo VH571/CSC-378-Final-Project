@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://b8331g167mby1"]
 
-[ext_resource type="Script" path="res://Scripts/gorilla.gd" id="1_j22t5"]
+[ext_resource type="Script" uid="uid://m5d0l54stjhs" path="res://Scripts/gorilla.gd" id="1_j22t5"]
 [ext_resource type="Texture2D" uid="uid://by7bjlwjkh2cv" path="res://Animations/gorilla.png" id="2_pyfvg"]
 [ext_resource type="Texture2D" uid="uid://c8hlkjoo7ilb5" path="res://Animations/gorilla-idle.png" id="3_4vwk3"]
 
@@ -90,7 +90,7 @@ script = ExtResource("1_j22t5")
 position = Vector2(128.5, 111)
 scale = Vector2(1.03125, 1)
 sprite_frames = SubResource("SpriteFrames_8c2vd")
-animation = &"attack"
+animation = &"dead"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gorilla"]
 position = Vector2(126.5, 109.5)

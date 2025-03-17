@@ -103,7 +103,7 @@ func play_random_roar():
 		return
 		
 	var line_number = randi() % num_roars
-	var audio_path = "res://assets/audio/Camel/Camel_Groan.mp3"
+	var audio_path = "res://assets/audio/gorilla/roar" + str(line_number) + ".mp3"
 	var audio_stream = load(audio_path)
 	
 	if audio_stream and audio_player:
@@ -157,7 +157,7 @@ func start_attack():
 		anim.animation = "attack"
 		anim.play()
 	
-	if randf() < 0.3:
+	if randf() < 0.5:
 		play_random_roar()
 
 func deal_damage_to_player():
@@ -168,7 +168,7 @@ func deal_damage_to_player():
 
 func take_damage(amount):
 	health -= amount
-	print("Camel health after damage: ", health)
+	print("Gorilla health after damage: ", health)
 	
 	if anim:
 		anim.modulate = Color(1, 0.3, 0.3)
@@ -212,6 +212,5 @@ func _on_attack_timer_timeout():
 		call_deferred("start_attack")
 
 func _on_area_2d_body_entered(body):
-	entered = true
 	if player and body == player and alive and !is_attacking:
 		start_attack()
