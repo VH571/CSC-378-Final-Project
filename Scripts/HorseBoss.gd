@@ -2,13 +2,10 @@ extends CharacterBody2D
 
 signal hit_player
 
-@export var boss_name: String = "HorseBoss"
-@export var current_level: int = 1
-
 const DROP_CHANCE : float = 0.1
 
 @onready var anim = $AnimatedSprite2D
-@onready var horse_scene := preload("res://Scenes/Horse.tscn")
+@onready var desert_scene := preload("res://Scenes/Desert.tscn")
 @onready var audio_player = $AudioPlayer
 @onready var voice_timer = $VoiceTimer
 @export var min_voice_delay: float = 5.0
@@ -33,15 +30,6 @@ var has_dealt_damage : bool = false
 
 
 func _ready():
-	var highest_completed_level = BossProgressManager.get_highest_completed_level(boss_name)
-	
-	# If this level has already been defeated, don't spawn or adjust difficulty
-	if BossProgressManager.is_boss_defeated_at_level(boss_name, current_level):
-		queue_free()
-		return
-		
-	adjust_difficulty(highest_completed_level)
-	
 	healthbar.init_health(health)
 	find_player()
 	connect_signals()
@@ -50,12 +38,6 @@ func _ready():
 	setup_audio_system()
 	play_random_voice_line()
 
-func adjust_difficulty(completed_levels: int):
-	# Increase health, damage, or speed based on previous completions
-	health += completed_levels * 20
-	damage += completed_levels * 2
-	speed += completed_levels * 5
-	
 func _physics_process(delta):
 	if !alive or !player:
 		return
@@ -213,7 +195,7 @@ func deal_damage_to_player():
 
 func take_damage(amount):
 	health -= amount
-	print("Horse health after damage: ", health)
+	print("Camel health after damage: ", health)
 	
 	healthbar.health = health
 	
@@ -228,7 +210,6 @@ func take_damage(amount):
 		die()
 
 func die():
-	BossProgressManager.defeat_boss(boss_name, current_level)
 	remove_from_group("enemies")
 	
 	alive = false

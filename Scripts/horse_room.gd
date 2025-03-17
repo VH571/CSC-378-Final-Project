@@ -2,7 +2,6 @@ extends Node2D
 
 @export var horse_scene: PackedScene
 @export var max_levels: int = 3
-@export var boss_name: String = "HorseBoss"
 @export var transition_time: float = 5
 @export var base_enemies_per_level: int = 1
 @export var enemy_increase_per_level: int = 0
@@ -38,10 +37,6 @@ func _ready():
 	
 	call_deferred("start_level", 1)
 
-func boss_defeated():
-	# Assuming you have a reference to the player
-	if player and player.has_method("on_boss_defeated"):
-		player.on_boss_defeated(boss_name)  # Pass the specific boss name
 func _physics_process(delta):
 	if level_in_progress:
 		if get_tree().get_nodes_in_group("enemies").size() == 0:
@@ -59,10 +54,7 @@ func start_level(level_number):
 	
 	var enemies_count = get_enemy_count_for_level(level_number)
 	
-	# Set the current level for the boss when spawning
-	var stats = get_enemy_stats_for_level(level_number)
-	
-	spawn_enemies(enemies_count, level_number, stats)
+	spawn_enemies(enemies_count, level_number)
 
 func get_enemy_count_for_level(level_number):
 	if custom_level_config:
@@ -94,19 +86,18 @@ func get_enemy_stats_for_level(level_number):
 		"speed": int(base_enemy_speed * speed_mod)
 	}
 
-func spawn_enemies(count, level_number, stats):
+func spawn_enemies(count, level_number):
 	for existing_enemy in get_tree().get_nodes_in_group("enemies"):
 		existing_enemy.queue_free()
 	
 	var available_spawns = spawn_points.duplicate()
 	available_spawns.shuffle()
 	
+	var stats = get_enemy_stats_for_level(level_number)
+	
 	for i in range(min(count, available_spawns.size())):
 		var spawn_position = available_spawns[i].global_position
 		var enemy = horse_scene.instantiate()
-		
-		# Set the current level for the boss
-		enemy.current_level = level_number
 		
 		enemy.add_to_group("enemies")
 		enemy.health = stats.health
@@ -117,7 +108,7 @@ func spawn_enemies(count, level_number, stats):
 		
 		add_child(enemy)
 		enemy.global_position = spawn_position
-		
+
 func _on_player_punched_enemy():
 	await get_tree().create_timer(0.2).timeout
 	

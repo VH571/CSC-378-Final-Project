@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://b8ugmxfy2ri4x"]
 
-[ext_resource type="Script" uid="uid://4e7s2yixqg4c" path="res://Scripts/player.gd" id="1_v0iea"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="Texture2D" uid="uid://dvhm2adf844t3" path="res://Animations/kangaroo attack1.png" id="2_fkybt"]
 [ext_resource type="Texture2D" uid="uid://bjgf041x7en2g" path="res://Animations/kangaroo attack.png" id="3_x3wgy"]
 [ext_resource type="Texture2D" uid="uid://b8rwwrge5m1hh" path="res://Animations/Kangaroo Idle1.png" id="4_3smsa"]
@@ -123,10 +123,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x3wgy"]
-size = Vector2(12.6892, 22.4641)
+size = Vector2(23.0808, 24.6338)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fkybt"]
-size = Vector2(34.4819, 31)
+size = Vector2(65, 31)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x3wgy"]
 bg_color = Color(0.160881, 0.722587, 0, 1)
@@ -140,7 +140,7 @@ sprite_frames = SubResource("SpriteFrames_fkybt")
 animation = &"attack2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.53937, 0.657895)
+position = Vector2(-1, 0.150163)
 scale = Vector2(1.21313, 1.23003)
 shape = SubResource("RectangleShape2D_x3wgy")
 
@@ -149,8 +149,7 @@ shape = SubResource("RectangleShape2D_x3wgy")
 [node name="PunchArea2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PunchArea2D"]
-position = Vector2(0, 0.5)
-scale = Vector2(1, 1)
+position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_fkybt")
 
 [node name="HealthBar" parent="." instance=ExtResource("6_x3wgy")]

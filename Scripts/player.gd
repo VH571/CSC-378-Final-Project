@@ -19,6 +19,7 @@ var alive = true
 
 
 func _ready():
+	health = 150
 	healthbar.init_health(health)
 	screen_size = get_viewport_rect().size
 	reset()
@@ -33,7 +34,7 @@ func _physics_process(_delta):
 	update_animation()
 
 func reset():
-	screen_size = get_viewport_rect().size
+	position = screen_size / 2
 	speed = START_SPEED
 
 func get_input():
@@ -137,3 +138,9 @@ func _on_to_gorilla_scene_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		print("Player reached exit! Changing scene...")
 		get_tree().change_scene_to_file("res://Scenes/Gorilla_fight.tscn")
+
+#for desert scene
+func _on_return_to_main_scene_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		print("Player reached exit! Changing scene...")
+		get_tree().change_scene_to_file("res://Scenes/MainScene.tscn")

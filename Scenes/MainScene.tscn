@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://c1nhvl1hwy6nu"]
 
-[ext_resource type="Script" uid="uid://grak4ibl5dyv" path="res://Scripts/main_scene.gd" id="1_7rqgy"]
+[ext_resource type="Script" path="res://Scripts/main_scene.gd" id="1_7rqgy"]
 [ext_resource type="Texture2D" uid="uid://cn8t21dy7tqu" path="res://assets/tileset.png" id="1_qxria"]
-[ext_resource type="Script" uid="uid://dhrjby4qm3oy1" path="res://Scripts/mesage_panel.gd" id="2_qxria"]
+[ext_resource type="Script" path="res://Scripts/mesage_panel.gd" id="2_qxria"]
 [ext_resource type="PackedScene" uid="uid://b8ugmxfy2ri4x" path="res://Scenes/player.tscn" id="3_nhkr4"]
 [ext_resource type="PackedScene" uid="uid://37xfattn1ct0" path="res://Scenes/sign.tscn" id="4_7rqgy"]
 
@@ -119,7 +119,7 @@ size = Vector2(63.5, 21)
 size = Vector2(20.5674, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nhkr4"]
-size = Vector2(65.4786, 19)
+size = Vector2(65.4786, 32)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4jh7"]
 bg_color = Color(0.559943, 0.37798, 0.0836944, 0.858824)
@@ -165,56 +165,20 @@ shape = SubResource("RectangleShape2D_7rqgy")
 [node name="to_gorilla_Scene" type="Area2D" parent="TileMap"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/to_gorilla_Scene"]
-position = Vector2(320.201, -21.5)
+position = Vector2(320.2, -15)
 shape = SubResource("RectangleShape2D_nhkr4")
 
 [node name="Player" parent="." instance=ExtResource("3_nhkr4")]
-position = Vector2(346.082, 309)
+position = Vector2(348.723, 312)
 
-[node name="Sign2" parent="." groups=["signs"] instance=ExtResource("4_7rqgy")]
-position = Vector2(302.932, 312)
-scale = Vector2(0.438897, 0.532764)
-message = "Controls"
-long_message = "W A S D -Move
-F - Punch
-E - Interact"
+[node name="Sign" parent="." groups=["signs"] instance=ExtResource("4_7rqgy")]
+position = Vector2(83.6582, 267)
+long_message = "Welcome
+to 
+Blood of the wild
 
-[node name="Sign3" parent="." groups=["signs"] instance=ExtResource("4_7rqgy")]
-position = Vector2(44.0308, 270)
-message = "CAUTION"
-long_message = "Desert Titan Approaches
-Hump of Doom Incoming
-Prepare for Camel Carnage!"
-
-[node name="Sign4" parent="." groups=["signs"] instance=ExtResource("4_7rqgy")]
-position = Vector2(304.693, 617)
-message = "WARNING"
-long_message = "Stallion Showdown INCOMING!
-
-Prepare for Fury
-Equine Destruction Imminent
-"
-
-[node name="Sign5" parent="." groups=["signs"] instance=ExtResource("4_7rqgy")]
-position = Vector2(616.431, 264)
-message = "DANGER"
-long_message = "Fowl Fury Incoming
-Feathered Nightmare Approaches
-Cluck or Die!"
-
-[node name="Sign6" parent="." groups=["signs"] instance=ExtResource("4_7rqgy")]
-position = Vector2(386.59, 12)
-message = "ALERT"
-long_message = "Primal Rage Unleashed
-Mammoth Monkey Madness
-Brace for Gorilla Assault!"
-
-[node name="Sign7" parent="." groups=["signs"] instance=ExtResource("4_7rqgy")]
-position = Vector2(385.709, 312)
-message = "Welcome"
-long_message = "Adventure Awaits!
-Embrace the Challenge
-Your Legend Begins Now"
+to close message walk
+ away and press E"
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -245,7 +209,21 @@ label_settings = SubResource("LabelSettings_f140w")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="CloseButton" type="Button" parent="UI/MessagePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.456
+anchor_top = 0.842
+anchor_right = 0.569
+anchor_bottom = 0.951
+offset_left = -0.184006
+offset_top = -0.12796
+offset_right = 0.209
+offset_bottom = -0.0839539
+text = "Close"
+
 [connection signal="body_entered" from="TileMap/To_Horse_Scene" to="Player" method="_on_to_horse_scene_body_entered"]
 [connection signal="body_entered" from="TileMap/to_desert_Scene" to="Player" method="_on_to_desert_scene_body_entered"]
 [connection signal="body_entered" from="TileMap/to_gorilla_Scene" to="Player" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="TileMap/to_gorilla_Scene" to="Player" method="_on_to_gorilla_scene_body_entered"]
+[connection signal="pressed" from="UI/MessagePanel/CloseButton" to="." method="_on_close_button_pressed"]

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dfs32rx8thb7t" path="res://Scenes/gorilla2.tscn" id="4_q248y"]
 [ext_resource type="PackedScene" uid="uid://b8ugmxfy2ri4x" path="res://Scenes/player.tscn" id="5_gm5vl"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_02sjp"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7psc7"]
 texture = ExtResource("1_xhssm")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -206,7 +206,7 @@ texture_region_size = Vector2i(32, 32)
 14:10/0 = 0
 15:10/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7lnpn"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b3u2q"]
 texture = ExtResource("2_q248y")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -242,7 +242,7 @@ texture_region_size = Vector2i(32, 32)
 3:3/0 = 0
 3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-7.96577, -7.64714, -0.63726, -16, 4.77946, -8.60303, 5.73536, 13.3825, 1.59315, 16, -5.73535, 16, -7.96577, 10.1962, -9.24029, -9.87755)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o0mkt"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qg4c3"]
 texture = ExtResource("3_gm5vl")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -286,9 +286,9 @@ texture_region_size = Vector2i(32, 32)
 [sub_resource type="TileSet" id="TileSet_0vd6i"]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
-sources/1 = SubResource("TileSetAtlasSource_02sjp")
-sources/2 = SubResource("TileSetAtlasSource_7lnpn")
-sources/3 = SubResource("TileSetAtlasSource_o0mkt")
+sources/1 = SubResource("TileSetAtlasSource_7psc7")
+sources/2 = SubResource("TileSetAtlasSource_b3u2q")
+sources/3 = SubResource("TileSetAtlasSource_qg4c3")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gm5vl"]
 size = Vector2(64, 22.5)
@@ -307,7 +307,7 @@ position = Vector2(529, 161)
 scale = Vector2(2.09296, 2.05993)
 
 [node name="Player" parent="." instance=ExtResource("5_gm5vl")]
-position = Vector2(417, 643)
+position = Vector2(417, 635)
 
 [node name="to_main_scene" type="Area2D" parent="."]
 
