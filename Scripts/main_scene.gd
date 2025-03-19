@@ -117,4 +117,5 @@ func close_message():
 	message_panel.visible = false
 
 func _on_close_button_pressed() -> void:
-	pass
+	pass 
+
