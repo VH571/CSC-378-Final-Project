@@ -58,3 +58,6 @@ func close_message():
 
 func _on_close_button_pressed() -> void:
 	pass 
+
+
+# Replace with function body.

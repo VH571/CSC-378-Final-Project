@@ -137,3 +137,8 @@ func _on_to_gorilla_scene_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		print("Player reached exit! Changing scene...")
 		get_tree().change_scene_to_file("res://Scenes/Gorilla_fight.tscn")
+		
+func _on_to_chicken_scene_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		print("Player reached exit! Changing scene...")
+		get_tree().change_scene_to_file("res://Scenes/ChickenFight.tscn")
