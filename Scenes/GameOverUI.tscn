@@ -1,0 +1,79 @@
+[gd_scene load_steps=2 format=3 uid="uid://drqt146oij11a"]
+
+[sub_resource type="GDScript" id="GDScript_s7gvh"]
+script/source = "extends Control
+
+signal restart_pressed
+
+func _ready():
+	# Hide the UI when the game starts
+	hide()
+	print(\"GameOverUI ready and hidden\")
+	
+	# Add direct connection to player's death
+	var player = get_tree().get_first_node_in_group(\"player\")
+	if player and player.has_signal(\"died\"):
+		player.died.connect(show_game_over)
+		print(\"GameOverUI directly connected to player died signal\")
+
+func show_game_over():
+	print(\"show_game_over called - making UI visible\")
+	
+	# Ensure we're visible and at the front
+	show()
+	visible = true
+	modulate = Color(1, 1, 1, 1) # Full opacity
+	
+	# Move to front to ensure it's visible
+	move_to_front()
+	
+	# Force the game to pause
+	get_tree().paused = true
+	
+	print(\"GameOverUI should now be visible\")
+
+func _on_restart_button_pressed():
+	# Emit signal when restart button is pressed
+	print(\"Restart button pressed\")
+	
+	# Unpause the game
+	get_tree().paused = false
+	
+	# Emit signal for any listeners
+	restart_pressed.emit()
+	
+	# As a fallback, reload the scene directly
+	get_tree().reload_current_scene()
+"
+
+[node name="GameOverUi" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = SubResource("GDScript_s7gvh")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 803.0
+offset_bottom = 696.0
+color = Color(0.380608, 0.279714, 0.197663, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 315.0
+offset_top = 133.0
+offset_right = 417.0
+offset_bottom = 162.0
+scale = Vector2(1.83282, 3.05517)
+text = "GAME OVER"
+
+[node name="restart_button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 361.0
+offset_top = 447.0
+offset_right = 468.0
+offset_bottom = 481.0
+text = "RESTART"
+
+[connection signal="pressed" from="restart_button" to="." method="_on_restart_button_pressed"]

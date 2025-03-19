@@ -4,17 +4,17 @@ signal hit_player
 
 @export var speed: float = 100.0
 @export var attack_range: float = 50.0  
-@export var health: int = 80
+@export var health: int = 150
 @export var damage: int = 10  # Matches player attack damage
 @export var attack_cooldown: float = 1.5
 @export var num_roars: int = 3 
-
+@onready var healthbar = $HealthBar
 @onready var player = null
 @onready var anim = $AnimatedSprite2D
 @onready var attack_area = $Area2D
 @onready var audio_player = $AudioPlayer
 @onready var roar_timer = $RoarTimer
-
+@export var boss_name: String = "CamelBoss"
 var alive: bool = true
 var entered: bool = false
 var is_attacking: bool = false
@@ -28,7 +28,16 @@ func _ready():
 	setup_attack_timer()
 	setup_audio_system()
 	play_random_roar()
+	healthbar.init_health(health)
 	
+	if BossProgressManager.is_single_boss_defeated(boss_name):
+		set_physics_process(false)
+		if $CollisionShape2D:
+			$CollisionShape2D.set_deferred("disabled", true)
+		if anim:
+			anim.visible = false
+		return
+		
 func _physics_process(delta):
 	if !alive or !player:
 		return
@@ -103,7 +112,7 @@ func play_random_roar():
 		return
 		
 	var line_number = randi() % num_roars
-	var audio_path = "res://assets/audio/gorilla/roar" + str(line_number) + ".mp3"
+	var audio_path = "res://assets/audio/Camel/Camel_Groan.mp3"
 	var audio_stream = load(audio_path)
 	
 	if audio_stream and audio_player:
@@ -157,7 +166,7 @@ func start_attack():
 		anim.animation = "attack"
 		anim.play()
 	
-	if randf() < 0.5:
+	if randf() < 0.3:
 		play_random_roar()
 
 func deal_damage_to_player():
@@ -168,7 +177,8 @@ func deal_damage_to_player():
 
 func take_damage(amount):
 	health -= amount
-	print("Gorilla health after damage: ", health)
+	print("Camel health after damage: ", health)
+	healthbar.health = health
 	
 	if anim:
 		anim.modulate = Color(1, 0.3, 0.3)
@@ -181,6 +191,8 @@ func take_damage(amount):
 		die()
 
 func die():
+	BossProgressManager.defeat_single_boss(boss_name)
+
 	remove_from_group("enemies")
 	
 	alive = false
@@ -212,5 +224,6 @@ func _on_attack_timer_timeout():
 		call_deferred("start_attack")
 
 func _on_area_2d_body_entered(body):
+	entered = true
 	if player and body == player and alive and !is_attacking:
 		start_attack()

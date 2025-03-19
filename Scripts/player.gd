@@ -1,22 +1,19 @@
 extends CharacterBody2D
-
 signal punched_enemy
+signal died
 
 const START_SPEED : int = 200
 const ATTACK_DURATION : float = 0.3
-
 var speed : int
 var screen_size : Vector2
 var is_attacking : bool = false
 var angle: int = 2
 var health : int = 150
 var alive = true
-
 @onready var anim := $AnimatedSprite2D
 @onready var attack_hitbox := $PunchArea2D
 @onready var attack_timer := $AttackTimer
 @onready var healthbar = $HealthBar
-
 
 func _ready():
 	healthbar.init_health(health)
@@ -26,6 +23,9 @@ func _ready():
 	attack_hitbox.body_entered.connect(_on_PunchArea2D_body_entered)
 
 func _physics_process(_delta):
+	if not alive:
+		return
+		
 	get_input()
 	move_and_slide()
 	position = position.clamp(Vector2.ZERO, screen_size)
@@ -66,33 +66,95 @@ func start_attack():
 
 func check_hit_enemies():
 	var overlapping_bodies = attack_hitbox.get_overlapping_bodies()
-	print("Checking enemies... Found:", overlapping_bodies.size())
 	for body in overlapping_bodies:
 		if body.is_in_group("enemies"):
-			print("Enemy hit:", body.name)
 			body.take_damage(5)
 			punched_enemy.emit()
 
 func take_damage(amount):
+	if not alive:
+		return
+		
 	health -= amount
-	print("Enemy health: ", health)
 	
-	healthbar.health = health
+	if healthbar:
+		healthbar.health = health
 	
 	if anim:
 		anim.modulate = Color(1, 0.3, 0.3)
 		await get_tree().create_timer(0.1).timeout
-		anim.modulate = Color(1, 1, 1)
+		if alive:
+			anim.modulate = Color(1, 1, 1)
 	
-	if health <= 0:
+	if health <= 0 and alive:
 		die()
 
 func die():
 	alive = false
 	$CollisionShape2D.set_deferred("disabled", true)
-	await get_tree().create_timer(1.5).timeout
-	queue_free()
-	print("Game Over!")
+	
+	get_tree().paused = true
+	
+	var emergency_ui = Control.new()
+	emergency_ui.name = "EmergencyGameOverUI"
+	emergency_ui.process_mode = Node.PROCESS_MODE_ALWAYS
+	emergency_ui.anchor_right = 1.0
+	emergency_ui.anchor_bottom = 1.0
+	
+	var bg = ColorRect.new()
+	bg.anchor_right = 1.0
+	bg.anchor_bottom = 1.0
+	bg.color = Color(0, 0, 0, 0.7)
+	emergency_ui.add_child(bg)
+	
+	var label = Label.new()
+	label.text = "GAME OVER"
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.anchor_right = 1.0
+	label.anchor_bottom = 0.4
+	label.add_theme_font_size_override("font_size", 48)
+	label.add_theme_color_override("font_color", Color(1, 0, 0))
+	emergency_ui.add_child(label)
+	
+	var button_container = VBoxContainer.new()
+	button_container.anchor_left = 0.3
+	button_container.anchor_top = 0.5
+	button_container.anchor_right = 0.7
+	button_container.anchor_bottom = 0.8
+	button_container.add_theme_constant_override("separation", 20)
+	emergency_ui.add_child(button_container)
+	
+	var restart_button = Button.new()
+	restart_button.text = "Restart Game"
+	restart_button.pressed.connect(func(): 
+		complete_game_restart()
+	)
+	button_container.add_child(restart_button)
+	
+	var menu_button = Button.new()
+	menu_button.text = "Return to Main Menu"
+	menu_button.pressed.connect(func(): 
+		get_tree().paused = false
+		get_tree().change_scene_to_file("res://Scenes/menu.tscn"))
+	button_container.add_child(menu_button)
+	
+	var quit_button = Button.new()
+	quit_button.text = "Quit Game"
+	quit_button.pressed.connect(func(): get_tree().quit())
+	button_container.add_child(quit_button)
+	
+	get_tree().root.add_child(emergency_ui)
+	
+	died.emit()
+
+func complete_game_restart():
+	if BossProgressManager:
+		BossProgressManager.reset_boss_progress()
+	
+	get_tree().paused = false
+	
+	get_tree().change_scene_to_file("res://Scenes/MainScene.tscn")
 
 func _on_animation_finished():
 	if is_attacking and anim.animation.begins_with("attack"):
@@ -107,35 +169,29 @@ func _on_animation_finished():
 
 func _on_PunchArea2D_body_entered(body):
 	if is_attacking and body.is_in_group("enemies"):  
-		print("Enemy hit:", body.name)
 		body.take_damage(10)
 		punched_enemy.emit()
+
 func get_health():
 	return health
+
 func get_max_health():
 	return 100
 
-
 func _on_to_horse_scene_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		print("Player reached exit! Changing scene...")
 		get_tree().change_scene_to_file("res://Scenes/Main1.tscn")
-
 
 func _on_to_main_scene_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		print("Player reached exit! Changing scene...")
 		get_tree().change_scene_to_file("res://Scenes/MainScene.tscn")
-		
 		
 func _on_to_desert_scene_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		print("Player reached exit! Changing scene...")
 		get_tree().change_scene_to_file("res://Scenes/Desert.tscn")
 
 func _on_to_gorilla_scene_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		print("Player reached exit! Changing scene...")
 		get_tree().change_scene_to_file("res://Scenes/Gorilla_fight.tscn")
 		
 func _on_to_chicken_scene_body_entered(body: Node2D) -> void:
