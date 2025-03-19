@@ -807,5 +807,5 @@ position = Vector2(177, -4)
 position = Vector2(19, 43.5)
 shape = SubResource("RectangleShape2D_iie5p")
 
-[connection signal="body_entered" from="to_main_scene" to="Player" method="_on_to_main_scene_body_entered"]
 [connection signal="body_entered" from="to_main_scene" to="Player" method="_on_return_to_main_scene_body_entered"]
+[connection signal="body_entered" from="to_main_scene" to="Player" method="_on_to_main_scene_body_entered"]

@@ -1,7 +1,6 @@
 extends Panel
 
 func _ready():
-	# Create a text button
 	var text_button = Button.new()
 	text_button.text = "CLOSE"
 	text_button.position = Vector2(370, 10)

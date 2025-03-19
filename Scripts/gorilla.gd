@@ -5,7 +5,7 @@ signal hit_player
 @export var speed: float = 100.0
 @export var attack_range: float = 50.0  
 @export var health: int = 80
-@export var damage: int = 10  # Matches player attack damage
+@export var damage: int = 10
 @export var attack_cooldown: float = 1.5
 @export var num_roars: int = 3 
 
@@ -37,8 +37,8 @@ func _physics_process(delta):
 		update_direction()
 		handle_movement_and_attack()
 		if !is_attacking:
-			velocity = direction * speed  # Set movement speed
-			move_and_slide()  # Apply movement
+			velocity = direction * speed
+			move_and_slide()
 			update_animation()
 	
 	check_attack_distance()
@@ -47,10 +47,7 @@ func find_player():
 	player = get_tree().get_first_node_in_group("player")  
 	
 	if !player:
-		print("Error: Player not found!")
-	else:
-		#print("❌ Error: Player not found!")
-		await get_tree().create_timer(1.0).timeout  # Wait 1 second and try again
+		await get_tree().create_timer(1.0).timeout
 		find_player()
 
 func connect_signals():
@@ -162,13 +159,12 @@ func start_attack():
 
 func deal_damage_to_player():
 	if player and player.has_method("take_damage") and !has_dealt_damage:
-		player.take_damage(damage)  # Calls `take_damage()` from `player.gd`
+		player.take_damage(damage)
 		hit_player.emit()
 		has_dealt_damage = true
 
 func take_damage(amount):
 	health -= amount
-	print("Gorilla health after damage: ", health)
 	
 	if anim:
 		anim.modulate = Color(1, 0.3, 0.3)

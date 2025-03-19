@@ -51,7 +51,6 @@ func _ready():
 	play_random_voice_line()
 
 func adjust_difficulty(completed_levels: int):
-	# Increase health, damage, or speed based on previous completions
 	health += completed_levels * 20
 	damage += completed_levels * 2
 	speed += completed_levels * 5

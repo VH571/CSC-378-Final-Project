@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://dfs32rx8thb7t"]
 
 [ext_resource type="Texture2D" uid="uid://by7bjlwjkh2cv" path="res://Animations/gorilla.png" id="1_4luuu"]
-[ext_resource type="Script" path="res://Scripts/gorilla_2.gd" id="1_hqkt6"]
+[ext_resource type="Script" uid="uid://dvv25jcinx10d" path="res://Scripts/gorilla_2.gd" id="1_hqkt6"]
 [ext_resource type="Texture2D" uid="uid://c8hlkjoo7ilb5" path="res://Animations/gorilla-idle.png" id="2_hqkt6"]
 [ext_resource type="PackedScene" uid="uid://b5a5nuik68062" path="res://Scenes/healthbar.tscn" id="4_ltq6k"]
 
