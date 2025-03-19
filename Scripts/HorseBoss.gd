@@ -227,7 +227,12 @@ func take_damage(amount):
 		die()
 
 func die():
-	BossProgressManager.defeat_boss(boss_name, current_level)
+	BossProgressManager.defeat_boss("HorseBoss", current_level)
+	
+	if BossProgressManager.are_all_bosses_defeated():
+		print("ALL BOSSES DEFEATED - SHOWING VICTORY SCREEN!")
+		await get_tree().create_timer(2.0).timeout
+		BossProgressManager.show_victory_screen()
 	remove_from_group("enemies")
 	
 	alive = false

@@ -1,8 +1,8 @@
 [gd_scene load_steps=22 format=3 uid="uid://b1ixutl67f164"]
 
-[ext_resource type="Script" uid="uid://cj2mtkcpc8wtu" path="res://Scenes/chicken_small.gd" id="1_xwiox"]
-[ext_resource type="Texture2D" uid="uid://bd0lh12l5isnb" path="res://assets/ChickenPeckRight.png" id="2_mm5be"]
-[ext_resource type="Texture2D" uid="uid://rwigwdc5ho0q" path="res://assets/ChickenSideWalkRight.png" id="3_rlspq"]
+[ext_resource type="Script" uid="uid://cj2mtkcpc8wtu" path="res://Scripts/chicken_small.gd" id="1_xwiox"]
+[ext_resource type="Texture2D" uid="uid://bd0lh12l5isnb" path="res://Animations/ChickenPeckRight.png" id="2_mm5be"]
+[ext_resource type="Texture2D" uid="uid://rwigwdc5ho0q" path="res://ChickenSideWalkRight.png" id="3_rlspq"]
 [ext_resource type="PackedScene" uid="uid://b5a5nuik68062" path="res://Scenes/healthbar.tscn" id="4_hri1f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xafyx"]

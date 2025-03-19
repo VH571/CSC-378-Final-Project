@@ -95,11 +95,16 @@ func die():
 	
 	get_tree().paused = true
 	
+	var canvas_layer = CanvasLayer.new()
+	canvas_layer.layer = 10 
+	canvas_layer.name = "GameOverLayer"
+	
 	var emergency_ui = Control.new()
 	emergency_ui.name = "EmergencyGameOverUI"
 	emergency_ui.process_mode = Node.PROCESS_MODE_ALWAYS
 	emergency_ui.anchor_right = 1.0
 	emergency_ui.anchor_bottom = 1.0
+	canvas_layer.add_child(emergency_ui)
 	
 	var bg = ColorRect.new()
 	bg.anchor_right = 1.0
@@ -107,27 +112,31 @@ func die():
 	bg.color = Color(0, 0, 0, 0.7)
 	emergency_ui.add_child(bg)
 	
+	var center_container = CenterContainer.new()
+	center_container.anchor_right = 1.0
+	center_container.anchor_bottom = 1.0
+	emergency_ui.add_child(center_container)
+	
+	var container = VBoxContainer.new()
+	container.custom_minimum_size = Vector2(400, 0)
+	container.add_theme_constant_override("separation", 20)
+	center_container.add_child(container)
+	
 	var label = Label.new()
 	label.text = "GAME OVER"
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	label.anchor_right = 1.0
-	label.anchor_bottom = 0.4
 	label.add_theme_font_size_override("font_size", 48)
 	label.add_theme_color_override("font_color", Color(1, 0, 0))
-	emergency_ui.add_child(label)
+	container.add_child(label)
 	
 	var button_container = VBoxContainer.new()
-	button_container.anchor_left = 0.3
-	button_container.anchor_top = 0.5
-	button_container.anchor_right = 0.7
-	button_container.anchor_bottom = 0.8
-	button_container.add_theme_constant_override("separation", 20)
-	emergency_ui.add_child(button_container)
+	button_container.add_theme_constant_override("separation", 10)
+	container.add_child(button_container)
 	
 	var restart_button = Button.new()
 	restart_button.text = "Restart Game"
 	restart_button.pressed.connect(func(): 
+		canvas_layer.queue_free()
 		complete_game_restart()
 	)
 	button_container.add_child(restart_button)
@@ -136,15 +145,18 @@ func die():
 	menu_button.text = "Return to Main Menu"
 	menu_button.pressed.connect(func(): 
 		get_tree().paused = false
+		canvas_layer.queue_free()
 		get_tree().change_scene_to_file("res://Scenes/menu.tscn"))
 	button_container.add_child(menu_button)
 	
 	var quit_button = Button.new()
 	quit_button.text = "Quit Game"
-	quit_button.pressed.connect(func(): get_tree().quit())
+	quit_button.pressed.connect(func(): 
+		canvas_layer.queue_free()
+		get_tree().quit())
 	button_container.add_child(quit_button)
 	
-	get_tree().root.add_child(emergency_ui)
+	get_tree().root.add_child(canvas_layer)
 	
 	died.emit()
 

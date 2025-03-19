@@ -23,8 +23,8 @@ autoplay = true
 layout_mode = 0
 offset_left = -1.0
 offset_top = 1.0
-offset_right = 408.0
-offset_bottom = 323.0
+offset_right = 407.0
+offset_bottom = 368.0
 scale = Vector2(1.23346, 1.51601)
 texture = ExtResource("3_nwwuc")
 

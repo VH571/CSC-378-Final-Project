@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bd0lh12l5isnb"
-path="res://.godot/imported/ChickenPeckRight.png-2b0c75fd6c0920e1a39bcf8e4f83b0a1.ctex"
+path="res://.godot/imported/ChickenPeckRight.png-29dbf78f89f3391411c9c48b98d9ed28.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ChickenPeckRight.png"
-dest_files=["res://.godot/imported/ChickenPeckRight.png-2b0c75fd6c0920e1a39bcf8e4f83b0a1.ctex"]
+source_file="res://Animations/ChickenPeckRight.png"
+dest_files=["res://.godot/imported/ChickenPeckRight.png-29dbf78f89f3391411c9c48b98d9ed28.ctex"]
 
 [params]
 

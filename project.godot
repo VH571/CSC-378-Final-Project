@@ -22,7 +22,7 @@ BossProgressManager="*res://Scripts/BossProgressManager.gd"
 [display]
 
 window/size/viewport_width=800
-window/size/viewport_height=700
+window/size/viewport_height=800
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/main_scene="uid://oxhkrjhmjg6h"

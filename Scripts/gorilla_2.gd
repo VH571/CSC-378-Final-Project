@@ -211,7 +211,12 @@ func die():
 	play_random_roar()
 	
 	remove_from_group("enemies")
-	
+
+	if BossProgressManager.are_all_bosses_defeated():
+		print("ALL BOSSES DEFEATED - SHOWING VICTORY SCREEN!")
+		await get_tree().create_timer(2.0).timeout
+		BossProgressManager.show_victory_screen()
+		
 	if anim:
 		anim.animation = "dead"
 		anim.play()
