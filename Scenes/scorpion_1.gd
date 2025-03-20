@@ -14,13 +14,16 @@ signal hit_player
 @onready var attack_area = $Area2D
 @onready var audio_player = $AudioPlayer
 @onready var roar_timer = $RoarTimer
-@export var boss_name: String = "CamelBoss"
+@export var boss_name: String = "Scorpion"
 var alive: bool = true
 var entered: bool = false
 var is_attacking: bool = false
 var can_attack: bool = true
 var has_dealt_damage: bool = false
 var direction: Vector2
+
+signal scorpion_died  # Declare the signal
+
 
 
 func _ready():
@@ -29,9 +32,7 @@ func _ready():
 	setup_attack_timer()
 	setup_audio_system()
 	play_random_roar()
-	healthbar.init_health(health)
 	
-	# Check if Camel should remain inactive
 	if BossProgressManager.is_single_boss_defeated(boss_name):
 		set_physics_process(false)
 		if $CollisionShape2D:
@@ -39,16 +40,11 @@ func _ready():
 		if anim:
 			anim.visible = false
 		return
-
-	
-
+		
 func _physics_process(delta):
 	if !alive or !player:
 		return
-	
-	# Prevent Camel from moving if Scorpion1 is still alive
-
-	
+		
 	if entered:
 		update_direction()
 		handle_movement_and_attack()
@@ -58,11 +54,6 @@ func _physics_process(delta):
 			update_animation()
 	
 	check_attack_distance()
-
-func _on_scorpion_died():
-	# Enable Camel's movement after Scorpion1 dies
-	print("Scorpion1 defeated! Camel is now active.")
-	entered = true  # Allow chasing the player
 
 func find_player():
 	player = get_tree().get_first_node_in_group("player")  
@@ -119,21 +110,12 @@ func _on_roar_timer_timeout():
 	
 	_start_roar_timer()
 
-func playDeadSound():
-	
-	var audio_path = "res://assets/audio/crunch.mp3"
-	var audio_stream = load(audio_path)
-	
-	if audio_stream and audio_player:
-		audio_player.stream = audio_stream
-		audio_player.play()
-	
 func play_random_roar():
 	if !alive:
 		return
 		
 	var line_number = randi() % num_roars
-	var audio_path = "res://assets/audio/Camel/Camel_Groan.mp3"
+	var audio_path = "res://assets/audio/Scorpion (short).mp3"
 	var audio_stream = load(audio_path)
 	
 	if audio_stream and audio_player:
@@ -144,6 +126,7 @@ func play_DamageRoar():
 	if !alive:
 		return
 		
+	var line_number = randi() % num_roars
 	var audio_path = "res://assets/audio/Camel/CamelDamage.mp3"
 	var audio_stream = load(audio_path)
 	
@@ -244,6 +227,8 @@ func die():
 		$Area2D/CollisionShape2D.set_deferred("disabled", true)
 	
 	await get_tree().create_timer(1.0).timeout
+	
+	emit_signal("scorpion_died")  # Notify Camel that Scorpion1 is dead
 	queue_free()
 
 func _on_animation_finished():

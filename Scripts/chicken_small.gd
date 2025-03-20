@@ -15,8 +15,8 @@ signal hit_player
 
 const DAMAGED_SOUND = "res://assets/audio/gorilla/Damaged.mp3"
 const VOICELINE_SOUND = "res://assets/audio/gorilla/RandomVoiceline.mp3"
-const ROAR1_SOUND = "res://assets/audio/gorilla/roar01.mp3" 
-const ROAR2_SOUND = "res://assets/audio/gorilla/roar2.mp3"
+const ROAR1_SOUND = "res://assets/audio/Chicken/ChickenSound.mp3"
+const ROAR2_SOUND ="res://assets/audio/Chicken/ChickenSound.mp3"
 
 var player = null
 var direction = Vector2.ZERO

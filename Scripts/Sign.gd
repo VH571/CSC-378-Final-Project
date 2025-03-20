@@ -2,7 +2,7 @@ extends StaticBody2D
 
 signal sign_interacted(message)
 
-@export var message: String = "This is a sign message."
+@export var message: String = "Camel is very dangerous."
 @export_multiline var long_message: String = "This is a longer message that can span multiple lines."
 
 var player_in_range = false
