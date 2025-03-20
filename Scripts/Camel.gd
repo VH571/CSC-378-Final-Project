@@ -210,9 +210,11 @@ func deal_damage_to_player():
 		has_dealt_damage = true
 
 func take_damage(amount):
+	if !alive or health <= 0:
+		return
 	health -= amount
-	print("Camel health after damage: ", health)
-	healthbar.health = health
+	if healthbar and is_instance_valid(healthbar):
+		healthbar.health = health
 	
 	if anim:
 		anim.modulate = Color(1, 0.3, 0.3)

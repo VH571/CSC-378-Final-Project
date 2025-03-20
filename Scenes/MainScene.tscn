@@ -1,8 +1,8 @@
 [gd_scene load_steps=25 format=3 uid="uid://c1nhvl1hwy6nu"]
 
-[ext_resource type="Script" path="res://Scripts/main_scene.gd" id="1_7rqgy"]
+[ext_resource type="Script" uid="uid://grak4ibl5dyv" path="res://Scripts/main_scene.gd" id="1_7rqgy"]
 [ext_resource type="Texture2D" uid="uid://cn8t21dy7tqu" path="res://assets/tileset.png" id="1_qxria"]
-[ext_resource type="Script" path="res://Scripts/mesage_panel.gd" id="2_qxria"]
+[ext_resource type="Script" uid="uid://dhrjby4qm3oy1" path="res://Scripts/mesage_panel.gd" id="2_qxria"]
 [ext_resource type="Texture2D" uid="uid://cen3o2lfhc4cy" path="res://assets/Desert.png" id="3_4b75m"]
 [ext_resource type="PackedScene" uid="uid://b8ugmxfy2ri4x" path="res://Scenes/player.tscn" id="3_nhkr4"]
 [ext_resource type="PackedScene" uid="uid://37xfattn1ct0" path="res://Scenes/sign.tscn" id="4_7rqgy"]
@@ -693,7 +693,7 @@ vertical_alignment = 1
 
 [connection signal="body_entered" from="TileMap/To_Horse_Scene" to="Player" method="_on_to_horse_scene_body_entered"]
 [connection signal="body_entered" from="TileMap/to_desert_Scene" to="Player" method="_on_to_desert_scene_body_entered"]
-[connection signal="body_entered" from="TileMap/to_gorilla_Scene" to="Player" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="TileMap/to_gorilla_Scene" to="Player" method="_on_to_gorilla_scene_body_entered"]
-[connection signal="body_entered" from="TileMap/to_chicken_scene" to="Player" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="TileMap/to_gorilla_Scene" to="Player" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="TileMap/to_chicken_scene" to="Player" method="_on_to_chicken_scene_body_entered"]
+[connection signal="body_entered" from="TileMap/to_chicken_scene" to="Player" method="_on_area_2d_body_entered"]

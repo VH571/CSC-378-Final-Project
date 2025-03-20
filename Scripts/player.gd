@@ -67,9 +67,10 @@ func start_attack():
 func check_hit_enemies():
 	var overlapping_bodies = attack_hitbox.get_overlapping_bodies()
 	for body in overlapping_bodies:
-		if body.is_in_group("enemies"):
-			body.take_damage(5)
-			punched_enemy.emit()
+		if body and is_instance_valid(body) and body.is_in_group("enemies"):
+			if body.has_method("take_damage"):
+				body.take_damage(5)
+				punched_enemy.emit()
 
 func take_damage(amount):
 	if not alive:
@@ -180,9 +181,10 @@ func _on_animation_finished():
 		anim.play()
 
 func _on_PunchArea2D_body_entered(body):
-	if is_attacking and body.is_in_group("enemies"):  
-		body.take_damage(10)
-		punched_enemy.emit()
+	if is_attacking and is_instance_valid(body) and body.is_in_group("enemies"):
+		if body.has_method("take_damage"):  
+			body.take_damage(10)
+			punched_enemy.emit()
 
 func get_health():
 	return health

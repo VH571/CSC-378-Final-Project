@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://bysk870kemqas"]
 
-[ext_resource type="Script" path="res://Scripts/menu.gd" id="1_cayip"]
+[ext_resource type="Script" uid="uid://fa8l1a0cvfid" path="res://Scripts/menu.gd" id="1_cayip"]
 [ext_resource type="AudioStream" uid="uid://bhngh10gtc22u" path="res://assets/audio/monster-roar-ps-oo6-306402.mp3" id="2_l5f1i"]
 [ext_resource type="Texture2D" uid="uid://r0ms8d5xidrn" path="res://assets/Menu2.png" id="3_nwwuc"]
-[ext_resource type="Script" path="res://Scenes/popup_panel.gd" id="4_2bp7y"]
+[ext_resource type="Script" uid="uid://bvqh232j4mo78" path="res://Scenes/popup_panel.gd" id="4_2bp7y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2uwo3"]
 bg_color = Color(0.329158, 0.329158, 0.329158, 1)
@@ -32,10 +32,10 @@ autoplay = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 3.13393
-offset_top = 4.92192
-offset_right = 411.134
-offset_bottom = 371.922
+offset_left = 3.0
+offset_top = 5.0
+offset_right = 975.0
+offset_bottom = 505.0
 scale = Vector2(1.23346, 1.51601)
 texture = ExtResource("3_nwwuc")
 
@@ -64,10 +64,10 @@ text = "Credits"
 
 [node name="PopupPanel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 127.864
-offset_top = 382.503
-offset_right = 419.864
-offset_bottom = 491.503
+offset_left = 459.0
+offset_top = 534.0
+offset_right = 778.0
+offset_bottom = 665.0
 scale = Vector2(1.19562, 1.4551)
 theme_override_styles/panel = SubResource("StyleBoxFlat_2uwo3")
 script = ExtResource("4_2bp7y")
@@ -76,8 +76,8 @@ script = ExtResource("4_2bp7y")
 layout_mode = 0
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 288.0
-offset_bottom = 105.0
+offset_right = 315.0
+offset_bottom = 125.0
 text = "Anthony: Main Scene & Gorilla Scene
 Victor: Horse Scene and Trailer
 Spencer: Chicken Scene
@@ -85,10 +85,10 @@ Luis: Menu & Camel Scene"
 
 [node name="Close" type="Button" parent="PopupPanel"]
 layout_mode = 0
-offset_left = 259.234
-offset_top = 92.0466
-offset_right = 543.234
-offset_bottom = 193.047
+offset_left = 286.596
+offset_top = 114.784
+offset_right = 570.596
+offset_bottom = 215.784
 scale = Vector2(0.0918302, 0.143446)
 theme = SubResource("Theme_0qm6y")
 theme_override_fonts/font = SubResource("FontVariation_vmx5b")

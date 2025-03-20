@@ -155,8 +155,11 @@ func deal_damage_to_player():
 			play_random_voiceline()
 
 func take_damage(amount):
+	if !alive or health <= 0:
+		return
 	health -= amount
-	healthbar.health = health
+	if healthbar and is_instance_valid(healthbar):
+		healthbar.health = health
 	play_sound(DAMAGED_SOUND)
 	
 	if anim:
