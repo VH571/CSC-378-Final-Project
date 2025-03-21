@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://bysk870kemqas"]
 
-[ext_resource type="Script" uid="uid://fa8l1a0cvfid" path="res://Scripts/menu.gd" id="1_cayip"]
+[ext_resource type="Script" path="res://Scripts/menu.gd" id="1_cayip"]
 [ext_resource type="AudioStream" uid="uid://bhngh10gtc22u" path="res://assets/audio/monster-roar-ps-oo6-306402.mp3" id="2_l5f1i"]
 [ext_resource type="Texture2D" uid="uid://r0ms8d5xidrn" path="res://assets/Menu2.png" id="3_nwwuc"]
-[ext_resource type="Script" uid="uid://bvqh232j4mo78" path="res://Scenes/popup_panel.gd" id="4_2bp7y"]
+[ext_resource type="Script" path="res://Scenes/popup_panel.gd" id="4_2bp7y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2uwo3"]
 bg_color = Color(0.329158, 0.329158, 0.329158, 1)
