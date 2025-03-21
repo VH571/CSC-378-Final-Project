@@ -653,7 +653,6 @@ Embrace the Challenge
 Your Legend Begins Now"
 
 [node name="UI" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="MessagePanel" type="Panel" parent="UI"]
 anchors_preset = -1
@@ -667,16 +666,6 @@ offset_right = -6.0
 offset_bottom = -0.700043
 theme_override_styles/panel = SubResource("StyleBoxFlat_y4jh7")
 script = ExtResource("2_qxria")
-
-[node name="ColorRect" type="ColorRect" parent="UI/MessagePanel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.05
-anchor_bottom = 0.057
-offset_top = 2.00002
-offset_right = 415.05
-offset_bottom = 263.812
-color = Color(0.442105, 0.21445, 0.000511582, 1)
 
 [node name="MessageLabel" type="Label" parent="UI/MessagePanel"]
 layout_mode = 1
