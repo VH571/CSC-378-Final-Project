@@ -2862,5 +2862,5 @@ position = Vector2(-641, 209)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Throne/StaticBody2D2"]
 
-[connection signal="body_entered" from="to_main_scene" to="Player" method="_on_to_main_scene_body_entered"]
 [connection signal="body_entered" from="to_main_scene" to="Player" method="_on_return_to_main_scene_body_entered"]
+[connection signal="body_entered" from="to_main_scene" to="Player" method="_on_to_main_scene_body_entered"]

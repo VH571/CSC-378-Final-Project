@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wh3d6hl2h5es"
-path="res://.godot/imported/index.icon.png-5665fad188e88d1e882500a4376bfe02.ctex"
+uid="uid://rwigwdc5ho0q"
+path="res://.godot/imported/ChickenSideWalkRight.png-b0d562266a647d59dd2265b48c8a1e32.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://index.icon.png"
-dest_files=["res://.godot/imported/index.icon.png-5665fad188e88d1e882500a4376bfe02.ctex"]
+source_file="res://Animations/ChickenSideWalkRight.png"
+dest_files=["res://.godot/imported/ChickenSideWalkRight.png-b0d562266a647d59dd2265b48c8a1e32.ctex"]
 
 [params]
 
