@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://fohektdrm485"]
+[gd_scene load_steps=12 format=3 uid="uid://ddng0u18fowyd"]
 
 [ext_resource type="Texture2D" uid="uid://cen3o2lfhc4cy" path="res://assets/Desert.png" id="1_336nh"]
 [ext_resource type="Script" uid="uid://cnxn6t7nxtvlx" path="res://Scripts/Camel.gd" id="2_1c8un"]

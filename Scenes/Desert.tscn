@@ -2193,6 +2193,7 @@ position = Vector2(-641, 209)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Throne/StaticBody2D2"]
 
+<<<<<<< HEAD
 [node name="StaticBody2D3" type="StaticBody2D" parent="Throne"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Throne/StaticBody2D3"]
@@ -2251,5 +2252,7 @@ texture = ExtResource("2_5dhle")
 position = Vector2(3, 4)
 polygon = PackedVector2Array(-811, 312, -745, 396, -677, 362, -570, 502, -1023, 504, -1070, 441, -951, 359, -929, 392)
 
+=======
+>>>>>>> 6a1c4f46b3f4ae243c8b3bb19f27bd540695afc2
 [connection signal="body_entered" from="to_main_scene" to="Player" method="_on_return_to_main_scene_body_entered"]
 [connection signal="body_entered" from="to_main_scene" to="Player" method="_on_to_main_scene_body_entered"]
