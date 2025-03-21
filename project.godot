@@ -13,6 +13,8 @@ config_version=5
 config/name="Blood of the Wild"
 run/main_scene="res://Scenes/menu.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
+config/icon="res://icon.svg"
+<<<<<<<HEADconfig/features=PackedStringArray("4.3", "Forward Plus")
 
 [autoload]
 
