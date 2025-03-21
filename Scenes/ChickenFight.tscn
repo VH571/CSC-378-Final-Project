@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://hexk1togpvyb"]
+[gd_scene load_steps=8 format=4 uid="uid://hexk1togpvyb"]
 
 [ext_resource type="TileSet" uid="uid://dmn2eeu1k54gm" path="res://assets/Pixel Lands Desert Demo/beachTileset.tres" id="1_hh3u3"]
 [ext_resource type="Texture2D" uid="uid://dxo7y3f8gqwn3" path="res://assets/Pixel Lands Desert Demo/desert_demo_objects.png" id="2_krhyx"]
@@ -42,6 +42,9 @@ texture = ExtResource("2_krhyx")
 [sub_resource type="TileSet" id="TileSet_lnfrt"]
 sources/0 = SubResource("TileSetAtlasSource_k2gjv")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xj4vb"]
+size = Vector2(38, 93)
+
 [node name="ChickenFight" type="Node2D"]
 
 [node name="Ground" type="TileMapLayer" parent="."]
@@ -66,3 +69,11 @@ damage = null
 attack_range = null
 attack_cooldown = null
 boss_name = null
+
+[node name="to_main_scene" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="to_main_scene"]
+position = Vector2(303, 344)
+shape = SubResource("RectangleShape2D_xj4vb")
+
+[connection signal="body_entered" from="to_main_scene" to="Player" method="_on_to_main_scene_body_entered"]
