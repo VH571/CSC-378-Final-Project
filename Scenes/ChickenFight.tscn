@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=4 uid="uid://hexk1togpvyb"]
 
-[ext_resource type="TileSet" uid="uid://dmn2eeu1k54gm" path="res://assets/Pixel Lands Desert Demo/beachTileset.tres" id="1_hh3u3"]
-[ext_resource type="Texture2D" uid="uid://dxo7y3f8gqwn3" path="res://assets/Pixel Lands Desert Demo/desert_demo_objects.png" id="2_krhyx"]
+[ext_resource type="TileSet" uid="uid://dmn2eeu1k54gm" path="res://assets/Pixel Lands Chicken Desert Demo/beachTileset.tres" id="1_hh3u3"]
+[ext_resource type="Texture2D" uid="uid://dxo7y3f8gqwn3" path="res://assets/Pixel Lands Chicken Desert Demo/desert_demo_objects.png" id="2_krhyx"]
 [ext_resource type="PackedScene" uid="uid://b8ugmxfy2ri4x" path="res://Scenes/player.tscn" id="3_duxgx"]
 [ext_resource type="PackedScene" uid="uid://b1ixutl67f164" path="res://Scenes/ChickenSmall.tscn" id="4_13qp8"]
 

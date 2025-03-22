@@ -39,9 +39,9 @@ func _ready():
 	call_deferred("start_level", 1)
 
 func boss_defeated():
-	# Assuming you have a reference to the player
+	
 	if player and player.has_method("on_boss_defeated"):
-		player.on_boss_defeated(boss_name)  # Pass the specific boss name
+		player.on_boss_defeated(boss_name) 
 func _physics_process(delta):
 	if level_in_progress:
 		if get_tree().get_nodes_in_group("enemies").size() == 0:
@@ -59,7 +59,7 @@ func start_level(level_number):
 	
 	var enemies_count = get_enemy_count_for_level(level_number)
 	
-	# Set the current level for the boss when spawning
+	
 	var stats = get_enemy_stats_for_level(level_number)
 	
 	spawn_enemies(enemies_count, level_number, stats)
@@ -105,7 +105,7 @@ func spawn_enemies(count, level_number, stats):
 		var spawn_position = available_spawns[i].global_position
 		var enemy = horse_scene.instantiate()
 		
-		# Set the current level for the boss
+	
 		enemy.current_level = level_number
 		
 		enemy.add_to_group("enemies")

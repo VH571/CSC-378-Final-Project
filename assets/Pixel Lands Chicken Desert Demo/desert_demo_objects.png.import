@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dxo7y3f8gqwn3"
-path="res://.godot/imported/desert_demo_objects.png-e637cb9a65d321c3b598a1ca1adfc90f.ctex"
+path="res://.godot/imported/desert_demo_objects.png-e28960b60a4fe2a907f588b5cb66c774.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Lands Desert Demo/desert_demo_objects.png"
-dest_files=["res://.godot/imported/desert_demo_objects.png-e637cb9a65d321c3b598a1ca1adfc90f.ctex"]
+source_file="res://assets/Pixel Lands Chicken Desert Demo/desert_demo_objects.png"
+dest_files=["res://.godot/imported/desert_demo_objects.png-e28960b60a4fe2a907f588b5cb66c774.ctex"]
 
 [params]
 

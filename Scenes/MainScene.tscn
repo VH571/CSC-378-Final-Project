@@ -1,8 +1,8 @@
 [gd_scene load_steps=26 format=4 uid="uid://c1nhvl1hwy6nu"]
 
-[ext_resource type="Script" uid="uid://grak4ibl5dyv" path="res://Scripts/main_scene.gd" id="1_7rqgy"]
+[ext_resource type="Script" path="res://Scripts/main_scene.gd" id="1_7rqgy"]
 [ext_resource type="Texture2D" uid="uid://cn8t21dy7tqu" path="res://assets/tileset.png" id="1_qxria"]
-[ext_resource type="Script" uid="uid://dhrjby4qm3oy1" path="res://Scripts/mesage_panel.gd" id="2_qxria"]
+[ext_resource type="Script" path="res://Scripts/mesage_panel.gd" id="2_qxria"]
 [ext_resource type="Texture2D" uid="uid://cen3o2lfhc4cy" path="res://assets/Desert.png" id="3_4b75m"]
 [ext_resource type="PackedScene" uid="uid://b8ugmxfy2ri4x" path="res://Scenes/player.tscn" id="3_nhkr4"]
 [ext_resource type="PackedScene" uid="uid://37xfattn1ct0" path="res://Scenes/sign.tscn" id="4_7rqgy"]
@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://csly3q0vbst7g" path="res://assets/watergrass.png" id="5_xb4mg"]
 [ext_resource type="Texture2D" uid="uid://cmwcis2d1mcn8" path="res://assets/fences.png" id="6_6t1o7"]
 [ext_resource type="Texture2D" uid="uid://c4tvoy2lln4u" path="res://assets/trees_stuf.png" id="7_5qxwa"]
-[ext_resource type="TileSet" uid="uid://dmn2eeu1k54gm" path="res://assets/Pixel Lands Desert Demo/beachTileset.tres" id="11_3vrkj"]
+[ext_resource type="TileSet" uid="uid://dmn2eeu1k54gm" path="res://assets/Pixel Lands Chicken Desert Demo/beachTileset.tres" id="11_3vrkj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y4jh7"]
 texture = ExtResource("1_qxria")
