@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cen3o2lfhc4cy" path="res://assets/Desert.png" id="1_uq5kc"]
 [ext_resource type="Texture2D" uid="uid://kycxc72qpvu8" path="res://assets/Pyramid.png" id="2_5dhle"]
-[ext_resource type="Script" uid="uid://cnxn6t7nxtvlx" path="res://Scripts/Camel.gd" id="2_k5qnl"]
+[ext_resource type="Script" path="res://Scripts/Camel.gd" id="2_k5qnl"]
 [ext_resource type="Texture2D" uid="uid://bbe6sdxxutvoy" path="res://Animations/CamelBoss.png" id="3_e8ckc"]
 [ext_resource type="Texture2D" uid="uid://c4tvoy2lln4u" path="res://assets/trees_stuf.png" id="3_qc5b2"]
 [ext_resource type="Texture2D" uid="uid://csly3q0vbst7g" path="res://assets/watergrass.png" id="4_5h5na"]
@@ -2815,9 +2815,7 @@ attack_cooldown = 1.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Camel"]
 rotation = -3.17301
 sprite_frames = SubResource("SpriteFrames_ubs0j")
-animation = &"run"
-frame = 2
-frame_progress = 1.0
+animation = &"attack"
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Camel"]
 position = Vector2(-4.50459, 0.519322)

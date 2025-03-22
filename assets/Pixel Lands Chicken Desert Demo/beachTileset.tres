@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=4 format=3 uid="uid://dmn2eeu1k54gm"]
 
-[ext_resource type="Texture2D" uid="uid://j4y1cbg78tg2" path="res://assets/Pixel Lands Desert Demo/desert_demo_terrain.png" id="1_km8ps"]
+[ext_resource type="Texture2D" uid="uid://j4y1cbg78tg2" path="res://assets/Pixel Lands Chicken Desert Demo/desert_demo_terrain.png" id="1_km8ps"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_iespk"]
 

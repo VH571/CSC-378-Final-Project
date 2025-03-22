@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dx5likovjdf17"]
 
-[ext_resource type="Script" uid="uid://cnxn6t7nxtvlx" path="res://Scripts/Camel.gd" id="2_1c8un"]
+[ext_resource type="Script" path="res://Scripts/Camel.gd" id="2_1c8un"]
 [ext_resource type="Texture2D" uid="uid://bbe6sdxxutvoy" path="res://Animations/CamelBoss.png" id="3_c2lax"]
 
 [sub_resource type="TileSet" id="TileSet_mlxvg"]

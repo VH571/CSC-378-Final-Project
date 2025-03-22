@@ -31,7 +31,6 @@ func _ready():
 	play_random_roar()
 	healthbar.init_health(health)
 	
-	# Check if Camel should remain inactive
 	if BossProgressManager.is_single_boss_defeated(boss_name):
 		set_physics_process(false)
 		if $CollisionShape2D:
@@ -46,9 +45,6 @@ func _physics_process(delta):
 	if !alive or !player:
 		return
 	
-	# Prevent Camel from moving if Scorpion1 is still alive
-
-	
 	if entered:
 		update_direction()
 		handle_movement_and_attack()
@@ -59,10 +55,7 @@ func _physics_process(delta):
 	
 	check_attack_distance()
 
-func _on_scorpion_died():
-	# Enable Camel's movement after Scorpion1 dies
-	print("Scorpion1 defeated! Camel is now active.")
-	entered = true  # Allow chasing the player
+
 
 func find_player():
 	player = get_tree().get_first_node_in_group("player")  
@@ -119,15 +112,7 @@ func _on_roar_timer_timeout():
 	
 	_start_roar_timer()
 
-func playDeadSound():
-	
-	var audio_path = "res://assets/audio/crunch.mp3"
-	var audio_stream = load(audio_path)
-	
-	if audio_stream and audio_player:
-		audio_player.stream = audio_stream
-		audio_player.play()
-	
+
 func play_random_roar():
 	if !alive:
 		return
